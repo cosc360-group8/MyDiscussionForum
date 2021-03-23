@@ -27,15 +27,14 @@ body {
 	margin-right: auto;
 }
 
-.blog-post {
+.blog-posts {
 	width: 65%;
-	height: 70vh;
-	display: flex;
-	box-shadow: 0 1.4rem 8rem rgb(179, 176, 176);
+	display: block;
+/*	box-shadow: 0 1.4rem 8rem rgb(179, 176, 176); */
 	align-items: center;
 	justify-content: center;
 	/* background-color: rgb(120, 149, 201); */
-	/* border: solid 2pt black; */
+	/* border: solid 2pt black; */ 
 	margin-left: auto;
 	margin-right: auto;
 	padding: 1em;
@@ -45,7 +44,9 @@ body {
 	width: 85%;
 	height: 50%;
 	background-color: white;
-	border: solid 1pt black;
+	border: solid 1pt gray;
+	margin-bottom: 50px;
+	margin-left: 70px;
 	padding: 10px;
 }
 
