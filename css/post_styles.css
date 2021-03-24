@@ -22,7 +22,7 @@ body {
 	width: 100%;
 	height: 100vh;
 	align-items: center;
-	justify-content: center; 
+	justify-content: center;
 	margin-left: auto;
 	margin-right: auto;
 }
@@ -30,11 +30,11 @@ body {
 .blog-posts {
 	width: 65%;
 	display: block;
-/*	box-shadow: 0 1.4rem 8rem rgb(179, 176, 176); */
+	/*	box-shadow: 0 1.4rem 8rem rgb(179, 176, 176); */
 	align-items: center;
 	justify-content: center;
 	/* background-color: rgb(120, 149, 201); */
-	/* border: solid 2pt black; */ 
+	/* border: solid 2pt black; */
 	margin-left: auto;
 	margin-right: auto;
 	padding: 1em;
@@ -43,23 +43,36 @@ body {
 .post-content {
 	width: 85%;
 	height: 50%;
-	background-color: white;
-	border: solid 1pt gray;
+	background-color: rgb(247, 244, 244);
+	border: solid 1pt rgb(218, 218, 218);
+	border-radius: 15px;
 	margin-bottom: 50px;
 	margin-left: 70px;
-	padding: 10px;
+	padding: 32px;
+}
+
+.post-title {
+	margin-bottom: 16px;
 }
 
 .post-pic img {
 	width: 25%;
 	margin-right: 2em;
-	box-shadow: 0 1.4rem 8rem rgb(179, 177, 177);
+	/* box-shadow: 0 1.4rem 8rem rgb(179, 177, 177); */
 	float: left;
+}
+
+.publisher {
+	color: rgb(134, 134, 134);
 }
 
 .post-text {
 	font-size: 15px;
 }
+
+/* .post-cta {
+	text-decoration: none;
+} */
 
 /* media queries */
 @media screen and (max-width: 1068px) {
