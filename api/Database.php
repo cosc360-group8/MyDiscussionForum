@@ -4,7 +4,7 @@ class Database {
     private $host = 'localhost';
     private $db = 'DiscForum';
     private $user = 'phpmyadmin';
-    private $pass = 'wUhZ#mNB"f97MG<:';
+    private $pass = '';
     private $connection;
 
     public function connect($verbose = false) : PDO {
