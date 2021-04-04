@@ -35,6 +35,7 @@ nav {
 
 .flex-container {
 	display: flex;
+	padding-bottom: 24px;
 }
 
 .side-bar {
