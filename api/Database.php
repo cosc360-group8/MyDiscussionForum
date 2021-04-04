@@ -3,8 +3,8 @@
 class Database {
     private $host = 'localhost';
     private $db = 'DiscForum';
-    private $user = '';
-    private $pass = '';
+    private $user = 'phpmyadmin';
+    private $pass = 'wUhZ#mNB"f97MG<:';
     private $connection;
 
     public function connect($verbose = false) : PDO {

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Mar 27, 2021 at 06:26 AM
+-- Generation Time: Apr 04, 2021 at 07:26 AM
 -- Server version: 8.0.23
 -- PHP Version: 7.4.3
 
@@ -67,10 +67,19 @@ CREATE TABLE `ForumUsers` (
   `email` varchar(320) NOT NULL,
   `username` varchar(15) NOT NULL,
   `password_hash` varchar(500) NOT NULL,
+  `profile_img` varchar(255) NOT NULL DEFAULT 'images/default_pfp.png',
   `created_on` date NOT NULL,
-  `is_amdin` tinyint(1) NOT NULL DEFAULT '0',
+  `is_admin` tinyint(1) NOT NULL DEFAULT '0',
   `is_enabled` tinyint(1) NOT NULL DEFAULT '1'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+--
+-- Dumping data for table `ForumUsers`
+--
+
+INSERT INTO `ForumUsers` (`id`, `email`, `username`, `password_hash`, `profile_img`, `created_on`, `is_admin`, `is_enabled`) VALUES
+(2, 'hello@world.com', 'seconduser', 'ef797c8118f02dfb649607dd5d3f8c7623048c9c063d532cc95c5ed7a898a64f', 'images/default_pfp.png', '2021-04-04', 0, 1),
+(3, 'third@user.com', 'thirduser', 'ef797c8118f02dfb649607dd5d3f8c7623048c9c063d532cc95c5ed7a898a64f', 'images/default_pfp.png', '2021-04-04', 0, 1);
 
 --
 -- Indexes for dumped tables
@@ -111,13 +120,13 @@ ALTER TABLE `ForumComments`
 -- AUTO_INCREMENT for table `ForumPosts`
 --
 ALTER TABLE `ForumPosts`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `ForumUsers`
 --
 ALTER TABLE `ForumUsers`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- Constraints for dumped tables
