@@ -5,8 +5,9 @@ class Database {
     private $db = 'DiscForum';
     private $user = 'phpmyadmin';
     private $pass = '';
-    private $connection;
+    private $connection;     // to be used as a PDO object
 
+    // function to connect to the database
     public function connect($verbose = false) : PDO {
         $this->connection = null;
 
