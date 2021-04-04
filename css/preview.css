@@ -1,4 +1,4 @@
-/* styles for blog posts */
+/* Styles for post previews */
 
 img {
 	width: 75%;
@@ -7,12 +7,10 @@ img {
 .blog-posts {
 	width: 65%;
 	display: block;
-	/*	box-shadow: 0 1.4rem 8rem rgb(179, 176, 176); */
 	align-items: center;
 	justify-content: center;
 	margin-left: auto;
 	margin-right: auto;
-	padding: 1em;
 	/* flex: 0 0 400px; */
 }
 
@@ -25,6 +23,7 @@ img {
 	margin-bottom: 50px;
 	padding: 32px;
 	cursor: pointer;
+	box-shadow: 0 1 3rem rgb(179, 177, 177);
 }
 
 .post-title {
@@ -34,7 +33,6 @@ img {
 .post-pic img {
 	width: 25%;
 	margin-right: 2em;
-	/* box-shadow: 0 1.4rem 8rem rgb(179, 177, 177); */
 	float: left;
 }
 
@@ -46,7 +44,7 @@ img {
 	font-size: 15px;
 }
 
-/* media queries */
+/* Media queries */
 @media screen and (max-width: 1068px) {
 	.blog-post {
 		max-width: 80rem;
