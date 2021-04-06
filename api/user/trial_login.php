@@ -8,13 +8,18 @@
 </head>
 <body>
 <?php
+
+    include_once "../Database.php";
+    include_once "../User.php";
+    $db = new Database();
+    $user = new User();
+    $dbConnect = $db->connect();
+
+    $email = $_POST["email"];
+    $password = $_POST["password"];
+
     echo "<title>login</title>";
     echo $_POST["email"]." ".$_POST["password"];
-
-
-
-
-
 
 ?>
 </body>
