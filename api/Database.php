@@ -1,11 +1,16 @@
 <?php
 
 class Database {
-    private $host = 'localhost';
+    // private $host = 'localhost';
+    // private $db = 'DiscForum';
+    // private $user = 'phpmyadmin';
+    // private $pass = '';
+    // private $connection;     // to be used as a PDO object
+
+    private $host = 'sftp://c360.nrieske.com';
     private $db = 'DiscForum';
-    private $user = 'phpmyadmin';
-    private $pass = '';
-    private $connection;     // to be used as a PDO object
+    private $user = 'cosc360';
+    private $pass = ']:eM\p5{@;';
 
     // function to connect to the database
     public function connect($verbose = false) : PDO {
