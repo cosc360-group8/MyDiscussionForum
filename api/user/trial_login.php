@@ -9,8 +9,8 @@
 <body>
 <?php
 
-    include_once "../Database.php";
-    include_once "../User.php";
+    include_once $_SERVER['DOCUMENT_ROOT']."/MyDiscussionForum/api/Database.php";
+    include_once $_SERVER['DOCUMENT_ROOT']."/MyDiscussionForum/api/User.php";
     $db = new Database();
     $user = new User();
     $dbConnect = $db->connect();
@@ -18,8 +18,7 @@
     $email = $_POST["email"];
     $password = $_POST["password"];
 
-    echo "<title>login</title>";
-    echo $_POST["email"]." ".$_POST["password"];
+    $user->login($db, $email, $password);
 
 ?>
 </body>

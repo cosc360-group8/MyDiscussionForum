@@ -1,8 +1,10 @@
 <?php
 
+include_once $_SERVER['DOCUMENT_ROOT']."/MyDiscussionForum/api/User.php";
+
 class Comment {
     public $id;
-    public $uid;
+    public $user;
     public $pid;
     public $dateposted;
     public $content;
@@ -25,7 +27,11 @@ class Comment {
         $row = $pre_q->fetch(PDO::FETCH_ASSOC);
 
         $this->id = $row['id'];
-        $this->uid = $row['postedby_id'];
+        //$this->uid = $row['postedby_id'];
+        $this->user = new User();
+        if(!$this->user->getuserbyid($db, $row['postedby_id'])){
+            return false;
+        }
         $this->pid = $row['parentpost_id'];
         $this->dateposted = $row['dateposted'];
         $this->content = $row['content'];
@@ -59,7 +65,11 @@ class Comment {
 
             $c->id = $row['id'];
             $c->pid = $row['parentpost_id'];
-            $c->uid = $row['postedby_id'];
+            $c->user = new User();
+            if(!$c->user->getuserbyid($db, $row['postedby_id'])){
+                $it_c--;
+                continue;
+            }
             $c->dateposted = $row['dateposted'];
             $c->content = $row['content'];
             $c->score = $row['score'];
@@ -95,7 +105,11 @@ class Comment {
 
             $c->id = $row['id'];
             $c->pid = $row['parentpost_id'];
-            $c->uid = $row['postedby_id'];
+            $c->user = new User();
+            if(!$c->user->getuserbyid($db, $row['postedby_id'])){
+                $it_c--;
+                continue;
+            }
             $c->dateposted = $row['dateposted'];
             $c->content = $row['content'];
             $c->score = $row['score'];
@@ -123,7 +137,8 @@ class Comment {
         $c = $this->getusercomments($db, $uid, 1, 0)[0];
         $this->id = $c->id;
         $this->pid = $c->pid;
-        $this->uid = $c->uid;
+        $this->user = new User();
+        $this->user->getuserbyid($db, $row['postedby_id']);
         $this->content = $c->content;
         $this->dateposted = $c->dateposted;
         $this->score = $c->score;

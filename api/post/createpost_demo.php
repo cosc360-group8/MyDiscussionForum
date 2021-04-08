@@ -1,8 +1,8 @@
 <?php
 
 // Including the Database and Post classes
-include_once "../Database.php";
-include_once "../Post.php";
+include_once $_SERVER['DOCUMENT_ROOT']."/MyDiscussionForum/api/Database.php";
+include_once $_SERVER['DOCUMENT_ROOT']."/MyDiscussionForum/api/Post.php";
 
 // Creating a database object
 $db_obj = new Database();
