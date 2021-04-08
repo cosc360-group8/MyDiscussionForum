@@ -3,9 +3,9 @@
 include_once $_SERVER['DOCUMENT_ROOT']."/MyDiscussionForum/api/Database.php";
 include_once $_SERVER['DOCUMENT_ROOT']."/MyDiscussionForum/api/User.php";
 
-// receive required fields form form
+// receive required fields from form (signup.html)
 $email = $_POST['email'];
-$user = $_POST['username'];
+$username = $_POST['username'];
 $pw = $_POST['password'];
 
 $db_obj = new Database();
@@ -31,6 +31,7 @@ elseif($response == 0){
 else{
     echo "Account was created successfully.";
 }
-print_r($response + "\n");
+print_r($response);
+print_r("\n");
 
 ?>
