@@ -35,7 +35,7 @@ CREATE TABLE `ForumComments` (
   `dateposted` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `content` varchar(1000) NOT NULL,
   `score` int NOT NULL DEFAULT '0'
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB;
 
 -- --------------------------------------------------------
 
@@ -52,7 +52,7 @@ CREATE TABLE `ForumPosts` (
   `content` varchar(1000) NOT NULL,
   `board` varchar(50) NOT NULL,
   `score` int NOT NULL DEFAULT '0'
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB;
 
 --
 -- Dumping data for table `ForumPosts`
@@ -80,7 +80,7 @@ CREATE TABLE `ForumUsers` (
   `created_on` date NOT NULL,
   `is_admin` tinyint(1) NOT NULL DEFAULT '0',
   `is_enabled` tinyint(1) NOT NULL DEFAULT '1'
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB;
 
 --
 -- Dumping data for table `ForumUsers`
