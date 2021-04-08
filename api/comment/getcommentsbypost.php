@@ -1,19 +1,19 @@
 <?php
 
 include_once "../Database.php";
-include_once "../Post.php";
+include_once "../Comment.php";
 
 header("Content-Type: application/json");
 
 $result = array();
 
-if (!isset($_POST['limit']) || empty($_POST['limit'])){
+if (!isset($_POST['pid']) || empty($_POST['pid'])){
+    $result['message'] = 'ERROR: Post ID is not set or empty';
+    http_response_code(400);
+} else if (!isset($_POST['limit']) || empty($_POST['limit'])) {
     $result['message'] = 'ERROR: Limit is not set or empty';
     http_response_code(400);
-} else if (!isset($_POST['board']) || empty($_POST['board'])) {
-    $result['message'] = 'ERROR: Board is not set or empty';
-    http_response_code(400);
-} else if (!isset($_POST['skip'])) {
+} else if (!isset($_POST['skip'])){
     $result['message'] = 'ERROR: Skip is not set or empty';
     http_response_code(400);
 } else {
@@ -21,15 +21,15 @@ if (!isset($_POST['limit']) || empty($_POST['limit'])){
     $db_con = $db_obj->connect();
 
     $limit = intval($_POST['limit']);
-    $board = $_POST['board'];
+    $pid = intval($_POST['pid']);
     $skip = 0;
     if (!empty($_POST['skip'])){
         $skip = intval($_POST['skip']);
     }
 
-    $post = new Post();
+    $c = new Comment();
 
-    $result['posts'] = $post->getboardposts($db_con, $board, $limit, $skip);
+    $result['comments'] = $c->getpostcomments($db_con, $pid, $limit, $skip);
     $result['message'] = "SUCCESS";
     http_response_code(200);
 }
