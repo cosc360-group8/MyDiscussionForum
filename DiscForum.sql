@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Apr 04, 2021 at 07:26 AM
+-- Generation Time: Apr 08, 2021 at 04:02 AM
 -- Server version: 8.0.23
 -- PHP Version: 7.4.3
 
@@ -21,8 +21,6 @@ SET time_zone = "+00:00";
 --
 -- Database: `DiscForum`
 --
-CREATE DATABASE IF NOT EXISTS `DiscForum`;
-USE `DiscForum`;
 
 -- --------------------------------------------------------
 
@@ -34,10 +32,10 @@ CREATE TABLE `ForumComments` (
   `id` int NOT NULL,
   `postedby_id` int NOT NULL,
   `parentpost_id` int NOT NULL,
-  `dateposted` datetime NOT NULL,
+  `dateposted` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `content` varchar(1000) NOT NULL,
   `score` int NOT NULL DEFAULT '0'
-) ENGINE=InnoDB;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 -- --------------------------------------------------------
 
@@ -48,13 +46,24 @@ CREATE TABLE `ForumComments` (
 CREATE TABLE `ForumPosts` (
   `id` int NOT NULL,
   `postedby_id` int NOT NULL,
-  `dateposted` datetime NOT NULL,
+  `dateposted` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `title` varchar(100) NOT NULL,
   `picture` varchar(255) NOT NULL,
   `content` varchar(1000) NOT NULL,
   `board` varchar(50) NOT NULL,
   `score` int NOT NULL DEFAULT '0'
-) ENGINE=InnoDB;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+--
+-- Dumping data for table `ForumPosts`
+--
+
+INSERT INTO `ForumPosts` (`id`, `postedby_id`, `dateposted`, `title`, `picture`, `content`, `board`, `score`) VALUES
+(2, 2, '2021-04-02 20:52:46', 'My thoughts on Inception\'s ending', 'images\\movie.jpg', 'Lorem ipsum dolor sit, amet consectetur adipisicing elit. Repellendus pariatur incidunt iste inventore sequi tempora at ipsa quia deleniti necessitatibus ad enim illo corrupti esse commodi praesentium sunt, tenetur repudiandae.', 'movies', 0),
+(3, 3, '2021-04-03 20:54:30', 'What is the purpose of the James Webb Telescope?', 'images\\jwt.jpg', 'Lorem ipsum dolor sit, amet consectetur adipisicing elit. Repellendus pariatur incidunt iste inventore sequi tempora at ipsa quia deleniti necessitatibus ad enim illo corrupti esse commodi praesentium sunt, tenetur repudiandae.', 'astronomy', 0),
+(4, 2, '2021-04-04 20:56:33', 'The situation at Barcelona', 'images\\fcb.webp', 'Lorem ipsum dolor sit, amet consectetur adipisicing elit. Repellendus pariatur incidunt iste inventore sequi tempora at ipsa quia deleniti necessitatibus ad enim illo corrupti esse commodi praesentium sunt, tenetur repudiandae.', 'football', 0),
+(5, 2, '2021-04-08 03:36:18', 'Hello World', 'images/jwt.jpg', 'Hello World', 'programming', 0),
+(9, 3, '2021-04-08 03:46:35', 'A test post with no image', '', 'this is a test post', 'test', 0);
 
 -- --------------------------------------------------------
 
@@ -71,7 +80,7 @@ CREATE TABLE `ForumUsers` (
   `created_on` date NOT NULL,
   `is_admin` tinyint(1) NOT NULL DEFAULT '0',
   `is_enabled` tinyint(1) NOT NULL DEFAULT '1'
-) ENGINE=InnoDB;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- Dumping data for table `ForumUsers`
@@ -120,7 +129,7 @@ ALTER TABLE `ForumComments`
 -- AUTO_INCREMENT for table `ForumPosts`
 --
 ALTER TABLE `ForumPosts`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT for table `ForumUsers`
