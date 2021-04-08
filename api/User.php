@@ -4,6 +4,8 @@ class User {
 
     public $id;
     public $email;
+    public $fname;
+    public $lname;
     public $username;
     public $profile_img;
     public $created_on;
@@ -12,7 +14,7 @@ class User {
 
     public function login($db, $email, $ptxt_password){
         // verifying user by checking email and password
-        $q = 'SELECT id, email, username, profile_img, password_hash, created_on, is_admin, is_enabled
+        $q = 'SELECT *
               FROM ForumUsers
               WHERE email = ? AND password_hash = ?
               LIMIT 1';
@@ -34,6 +36,8 @@ class User {
 
         $this->id = $row['id'];
         $this->email = $email;
+        $this->fname = $row['firstname'];
+        $this->lname = $row['lastname'];
         $this->username = $row['username'];
         $this->profile_img = $row['profile_img'];
         $this->created_on = $row['created_on'];
@@ -44,7 +48,7 @@ class User {
         return true;
     }
 
-    public function create($db, $email, $username, $ptxt_password){
+    public function create($db, $email, $fname, $lname, $username, $ptxt_password){
         $user = new User();
         // return -1 if username is already taken
         if ($user->getuserbyusername($db, $username)){  
@@ -56,16 +60,18 @@ class User {
         }
         
         // create account if username and email are not already taken
-        $q = 'INSERT INTO ForumUsers (email, username, password_hash, created_on)
-              VALUES (?, ?, ?, CURDATE())';
+        $q = 'INSERT INTO ForumUsers (email, firstname, lastname, username, password_hash, created_on)
+              VALUES (?, ?, ?, ?, ?, CURDATE())';
 
         $pw_hash = hash('sha256', $ptxt_password);
 
         // prepared statement
         $pre_q = $db->prepare($q);
         $pre_q->bindParam(1, $email);
-        $pre_q->bindParam(2, $username);
-        $pre_q->bindParam(3, $pw_hash);
+        $pre_q->bindParam(2, $fname);
+        $pre_q->bindParam(3, $lname);
+        $pre_q->bindParam(4, $username);
+        $pre_q->bindParam(5, $pw_hash);
         $pre_q->execute();
 
         // return 0 if SQL query crashes
@@ -81,7 +87,7 @@ class User {
 
     public function getuserbyusername($db, $username){
         // function returns true if a username is found in the database, else returns false
-        $q = 'SELECT id, email, username, profile_img, created_on, is_admin, is_enabled
+        $q = 'SELECT *
               FROM ForumUsers
               WHERE username = ?
               LIMIT 1';
@@ -101,6 +107,8 @@ class User {
 
         $this->id = $row['id'];
         $this->email = $row['email'];
+        $this->fname = $row['firstname'];
+        $this->lname = $row['lastname'];
         $this->username = $row['username'];
         $this->profile_img = $row['profile_img'];
         $this->created_on = $row['created_on'];
@@ -113,7 +121,7 @@ class User {
 
     public function getuserbyemail($db, $email){
         // returns true if an email is found in the database, else returns false
-        $q = 'SELECT id, email, username, profile_img, created_on, is_admin, is_enabled
+        $q = 'SELECT *
               FROM ForumUsers
               WHERE email = ?
               LIMIT 1';
@@ -133,6 +141,8 @@ class User {
 
         $this->id = $row['id'];
         $this->email = $row['email'];
+        $this->fname = $row['firstname'];
+        $this->lname = $row['lastname'];
         $this->username = $row['username'];
         $this->profile_img = $row['profile_img'];
         $this->created_on = $row['created_on'];
@@ -145,7 +155,7 @@ class User {
 
     public function getuserbyid($db, $id){
         // function returns true if an id is found in the database, else returns false
-        $q = 'SELECT id, email, username, profile_img, created_on, is_admin, is_enabled
+        $q = 'SELECT *
               FROM ForumUsers
               WHERE id = ?
               LIMIT 1';
@@ -165,6 +175,8 @@ class User {
 
         $this->id = $row['id'];
         $this->email = $row['email'];
+        $this->fname = $row['firstname'];
+        $this->lname = $row['lastname'];
         $this->username = $row['username'];
         $this->profile_img = $row['profile_img'];
         $this->created_on = $row['created_on'];
