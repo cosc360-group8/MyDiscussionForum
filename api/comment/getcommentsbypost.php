@@ -1,7 +1,7 @@
 <?php
 
-include_once "../Database.php";
-include_once "../Comment.php";
+include_once $_SERVER['DOCUMENT_ROOT']."/MyDiscussionForum/api/Database.php";
+include_once $_SERVER['DOCUMENT_ROOT']."/MyDiscussionForum/api/Comment.php";
 
 header("Content-Type: application/json");
 

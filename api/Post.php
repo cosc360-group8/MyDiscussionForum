@@ -1,8 +1,12 @@
 <?php
 
+include_once $_SERVER['DOCUMENT_ROOT']."/MyDiscussionForum/api/utils.php";
+include_once $_SERVER['DOCUMENT_ROOT']."/MyDiscussionForum/api/User.php";
+
 class Post {
+    
     public $id;
-    public $user_id;
+    public $user;
     public $date_posted;
     public $title;
     public $img_url;
@@ -39,7 +43,11 @@ class Post {
 
         // And assign the resulting columns to the appropriate member variables
         $this->id = $id;
-        $this->user_id = $row['postedby_id'];
+        //$this->user_id = $row['postedby_id'];
+        $this->user = new User();
+        if(!$this->user->getuserbyid($db_connection, $row['postedby_id'])){
+            return false;
+        }
         $this->date_posted = $row['dateposted'];
         $this->title = $row['title'];
         $this->img_url = $row['picture'];
@@ -73,7 +81,12 @@ class Post {
             $post = new Post();
 
             $post->id = $row['id'];
-            $post->user_id = $row['postedby_id'];
+            //$post->user_id = $row['postedby_id'];
+            $post->user = new User();
+            if(!$post->user->getuserbyid($db, $row['postedby_id'])){
+                $it_c--;
+                continue;
+            }
             $post->date_posted = $row['dateposted'];
             $post->title = $row['title'];
             $post->img_url = $row['picture'];
@@ -112,7 +125,12 @@ class Post {
             $post = new Post();
 
             $post->id = $row['id'];
-            $post->user_id = $row['postedby_id'];
+            //$post->user_id = $row['postedby_id'];
+            $post->user = new User();
+            if(!$post->user->getuserbyid($db, $row['postedby_id'])){
+                $it_c--;
+                continue;
+            }
             $post->date_posted = $row['dateposted'];
             $post->title = $row['title'];
             $post->img_url = $row['picture'];
@@ -151,7 +169,11 @@ class Post {
             $post = new Post();
 
             $post->id = $row['id'];
-            $post->user_id = $row['postedby_id'];
+            $post->user = new User();
+            if(!$post->user->getuserbyid($db, $row['postedby_id'])){
+                $it_c--;
+                continue;
+            }
             $post->date_posted = $row['dateposted'];
             $post->title = $row['title'];
             $post->img_url = $row['picture'];
@@ -194,7 +216,11 @@ class Post {
                 $post = new Post();
 
                 $post->id = $row['id'];
-                $post->user_id = $row['postedby_id'];
+                $post->user = new User();
+                if(!$post->user->getuserbyid($db, $row['postedby_id'])){
+                    $it_c--;
+                    continue;
+                }
                 $post->date_posted = $row['dateposted'];
                 $post->title = $row['title'];
                 $post->img_url = $row['picture'];
@@ -228,7 +254,8 @@ class Post {
 
         $post = $this->getuserposts($db, $uid, 1, 0)[0];
         $this->id = $post->id;
-        $this->user_id = $post->user_id;
+        $this->user = new User();
+        $this->user->getuserbyid($db, $row['postedby_id']);
         $this->date_posted = $post->date_posted;
         $this->title = $post->title;
         $this->img_url = $post->img_url;
@@ -256,6 +283,26 @@ class Post {
         }
 
         return true;
+    }
+
+    public function board_html(){
+        if (!isset($this->id) || empty($this->id)){
+            return false;
+        }
+
+        echo '<div class="post-content">';
+        echo '<h2 class="thread"><a href="./?board='.$this->board.'">/'.$this->board.'</a></h2>';
+        echo '<div class="post-info">';
+        echo '<span>'.timesince($this->date_posted).'</span>';
+        echo '</div>';
+        echo '<figure class="post-pic">';
+        echo '<img src="'.$this->img_url.'" title="'.$this->title.'" />';
+        echo '</figure>';
+        echo '<span class="publisher">by '.$this->user->username.'</span>';
+        echo '<p class="post-text">';
+        echo $this->content;
+        echo '</p>';
+        echo '</div>';
     }
 }
 

@@ -1,8 +1,8 @@
 <?php
 
 // Including the Database and Comment classes
-include_once "../Database.php";
-include_once "../Comment.php";
+include_once $_SERVER['DOCUMENT_ROOT']."/MyDiscussionForum/api/Database.php";
+include_once $_SERVER['DOCUMENT_ROOT']."/MyDiscussionForum/api/Comment.php";
 
 // Creating a database object
 $db_obj = new Database();

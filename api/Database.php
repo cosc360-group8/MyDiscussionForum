@@ -14,7 +14,7 @@ class Database {
     private $connection; // to be used as a PDO object
 
     // function to connect to the database
-    public function connect($verbose = false) : PDO {
+    public function connect($verbose = false) {
         $this->connection = null;
 
         $connstr = 'mysql:host='.$this->host.';dbname='.$this->db;
