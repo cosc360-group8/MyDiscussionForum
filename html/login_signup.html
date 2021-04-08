@@ -38,21 +38,37 @@
         </div>
     </nav>
 
+    <div class="forum-logo">
+        <h1>MDF&reg;</h1>
+    </div> 
+    
     <main class="flex-container" id="signup">
         <div class="form-list">
             <form class="forms" id="login_form" action="../api/user/trial_login.php" method="POST">
+                <h1>Login</h1>
+
                 <div class="input-fields">
-                    <label>Email: </label><br>
-                    <input type="email" id="email" name="email"><br>
+                    <!-- <label>Email: </label><br> -->
+                    <input type="email" id="email" name="email" placeholder="email"><br>
                 </div>
 
                 <div class="input-fields">
-                    <label>Password: </label><br>
-                    <input type="password" id="password" name="password"><br>
+                    <!-- <label>Password: </label><br> -->
+                    <input type="password" id="password" name="password" placeholder="password"><br>
+                </div>
+
+                <div>
+                    <a href="#">Forgot Password?</a>
                 </div>
 
                 <input class="buttons" type="submit" value="Login">
+
+                <div style="text-align: center; font-size: 15px;">
+                    <p>Not a Member? <a href="#">Sign Up</a> now</p>
+                </div>
             </form>
+
+            
         </div>
     </main>
 </body>
