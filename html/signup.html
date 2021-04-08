@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign up</title>
+
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/form.css">
+</head>
+<body>
+    <nav>
+        <div class="logo">
+            <h4>MDF&reg;</h4>
+        </div> 
+        <ul class="nav-links">
+            <li>
+                <a href="#">Home</a>
+            </li>
+            <li>
+                <a href="#">Create Post</a>
+            </li>
+            <li>
+             <a href="#">Profile</a>
+            </li>
+            <li>
+             <a href="#">Settings</a>
+            </li>
+        </ul>
+        <div class="burger">
+            <div class="line1"></div>
+            <div class="line2"></div>
+            <div class="line3"></div>
+        </div>
+    </nav>
+
+    <div class="forum-logo">
+        <h1>MDF&reg;</h1>
+    </div> 
+    
+    <main class="flex-container">
+        <div class="form-list">
+            <form class="forms" id="signup_form" action="../api/user/trial_login.php" method="POST">
+                <h1>Sign up</h1>
+
+                <div class="input-fields">
+                    <input type="text" id="username" name="username" placeholder="username"><br>
+                </div>
+
+                <div class="input-fields">
+                    <input type="email" id="email" name="email" placeholder="email"><br>
+                </div>
+
+                <div class="input-fields">
+                    <input type="password" id="password" name="password" placeholder="password"><br>
+                </div>
+
+                <div class="input-fields">
+                    <input type="password" id="password-check" name="password-check" placeholder="re-enter password"><br>
+                </div>
+               
+                <div style="text-align: center;">
+                <input class="buttons" type="submit" value="Create">  
+                </div>        
+                
+                <div style="text-align: center; font-size: 15px;">
+                    <p>Already a Member? Login <a href="./login.html">here</a></p>
+                </div>
+            </form>
+
+            
+        </div>
+    </main>
+</body>
+</html>

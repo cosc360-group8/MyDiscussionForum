@@ -8,8 +8,10 @@
 </head>
 <body>
 <?php
+    // this file is only made for testing purposes and would be deleted.
 
-    include_once $_SERVER['DOCUMENT_ROOT']."/MyDiscussionForum/api/Database.php";
+    echo $_POST["email"]." ".$_POST["password"];
+  /*  include_once $_SERVER['DOCUMENT_ROOT']."/MyDiscussionForum/api/Database.php";
     include_once $_SERVER['DOCUMENT_ROOT']."/MyDiscussionForum/api/User.php";
     $db = new Database();
     $user = new User();
@@ -18,7 +20,7 @@
     $email = $_POST["email"];
     $password = $_POST["password"];
 
-    $user->login($db, $email, $password);
+    $user->login($db, $email, $password); */
 
 ?>
 </body>
