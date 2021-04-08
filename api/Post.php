@@ -238,6 +238,25 @@ class Post {
 
         return true;
     }
+
+    public function delete($db){
+        if (!isset($this->id) || empty($this->id)){
+            return false;
+        }
+
+        $q = 'DELETE FROM ForumPosts
+              WHERE id = ?';
+
+        $pre_q = $db->prepare($q);
+        $pre_q->bindParam(1, $this->id);
+        $pre_q->execute();
+
+        if ($pre_q->rowCount() < 1){
+            return false;
+        }
+
+        return true;
+    }
 }
 
 ?>
