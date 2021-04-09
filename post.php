@@ -1,45 +1,4 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MyDiscussionForum</title>
-
-    <link rel="preconnect" href="https://fonts.gstatic.com">
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="css/style.css">
-    <link rel="stylesheet" href="css/preview.css">
-    <link rel="stylesheet" href="css/post.css">
-
-    <script type="text/javascript" src="js/main.js"></script>
-
-</head>
-<body>
-    <nav>
-       <div class="logo">
-           <h4>MDF&reg;</h4>
-       </div> 
-       <ul class="nav-links">
-           <li>
-               <a href="#">Home</a>
-           </li>
-           <li>
-               <a href="#">Create Post</a>
-           </li>
-           <li>
-            <a href="#">Profile</a>
-           </li>
-           <li>
-            <a href="#">Settings</a>
-           </li>
-       </ul>
-       <div class="burger">
-           <div class="line1"></div>
-           <div class="line2"></div>
-           <div class="line3"></div>
-       </div>
-    </nav>
+<?php include('header.php'); ?>
     <main class="flex-container">
         <div class="blog-posts">     <!-- blog-posts consists of posts from different threads -->
             <div class="post-content">
@@ -51,24 +10,24 @@
                 <figure class="post-pic">
                     <img src="images\fcb.webp" title="The situation at Barcelona"  />
                 </figure>
-                <span class="publisher">by boi1da</span> 
+                <span class="publisher">by boi1da</span>
                 <p class="post-text">
-                   Lorem ipsum dolor sit, amet consectetur adipisicing elit. Repellendus pariatur incidunt iste inventore sequi 
-                   tempora at ipsa quia deleniti necessitatibus ad enim illo corrupti esse commodi praesentium sunt, 
+                   Lorem ipsum dolor sit, amet consectetur adipisicing elit. Repellendus pariatur incidunt iste inventore sequi
+                   tempora at ipsa quia deleniti necessitatibus ad enim illo corrupti esse commodi praesentium sunt,
                    tenetur repudiandae.
                 </p>
             </div>
-        
-        
+
+
             <div class="comment-wrapper">
                 <form action="" class="form">
                     <div class="input-group">
                         <label for="name">Name</label><br>
-                        <input type="text" id="name" placeholder="Enter your name:" required> 
+                        <input type="text" id="name" placeholder="Enter your name:" required>
                     </div>
                     <div class="input-group">
                         <label for="email">Email</label><br>
-                        <input type="text" id="email" placeholder="Enter your email:" required> 
+                        <input type="text" id="email" placeholder="Enter your email:" required>
                     </div>
                     <div class="input-group">
                         <label for="comment">Comment</label><br>
@@ -87,12 +46,10 @@
                 </div>
             </div>
         </div>
-        
+
         <aside class="side-bar post-content">
             <h1>Trending</h1>
             <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Et dignissimos sint fugit delectus, eligendi quos perferendis nisi deleniti dolorem possimus aliquam provident culpa nobis neque ratione quo consectetur est iste.</p>
         </aside>
     </main>
-    
-</body>
-</html>
+<?php include('footer.php'); ?>

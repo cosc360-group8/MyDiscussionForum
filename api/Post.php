@@ -4,7 +4,7 @@ include_once $_SERVER['DOCUMENT_ROOT']."/MyDiscussionForum/api/utils.php";
 include_once $_SERVER['DOCUMENT_ROOT']."/MyDiscussionForum/api/User.php";
 
 class Post {
-    
+
     public $id;
     public $user;
     public $date_posted;
