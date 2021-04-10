@@ -16,33 +16,37 @@
             var form = document.getElementById('signup_form');
             form.onsubmit = function(e){
                 checkReqFields();
+                checkPasswordsMatch();
                 //alert('hi');
             }
         }
 
-        function checkReqFields(e){
+        function checkReqFields(event){
             var username = document.getElementById('username');
+            var firstname = document.getElementById('firstname');
+            var lastname = document.getElementById('lastname');
             var email = document.getElementById('email');
             var password = document.getElementById('password');
             var password_check = document.getElementById('password-check');
-
-            // create an array of required fields.
-            // for each field, if it is empty, add class 'invalid' to highlight the field
+            
+            // creating an array of required fields to check field validity
             var required_fields = [username, email, password, password_check];
             for(var i = 0; i < required_fields.length; i++){
-                if(required_fields[i].value == ''){
+                if(required_fields[i].value.length == 0){  // if a field is empty
                     required_fields[i].classList.add('invalid');
-                    e.preventDefault();
+                    event.preventDefault();
                 }
             }
+        }
 
-            // check if original and re-entered passwords match
-            // if passords don't match, add class 'invalid' and notify user that passwords don't match
+        function checkPasswordsMatch(event){
+            var password = document.getElementById('password');
+            var password_check = document.getElementById('password-check');
             if(password.value.localeCompare(password_check.value) != 0){    // both the strings are not equal
                 password.classList.add('invalid');
                 password_check.classList.add('invalid');
                 alert('Passwords don\'t match');
-                e.preventDefault();
+                event.preventDefault();
             } 
         }
 
@@ -114,9 +118,7 @@
                 <div style="text-align: center; font-size: 15px;">
                     <p>Already a Member? Login <a href="./login.html">here</a></p>
                 </div>
-            </form>
-
-            
+            </form>           
         </div>
     </main>
 </body>
