@@ -5,15 +5,18 @@ include_once $_SERVER['DOCUMENT_ROOT']."/MyDiscussionForum/api/User.php";
 
 // receive required fields from form (signup.html)
 $email = $_POST['email'];
+$firstname = $_POST['firstname'];
+$lastname = $_POST['lastname'];
 $username = $_POST['username'];
 $pw = $_POST['password'];
+
 
 $db_obj = new Database();
 $db_con = $db_obj->connect();
 
 $uobj = new User();
 // calling function to create an account
-$response = $uobj->create($db_con, $email, $username, $pw);
+$response = $uobj->create($db_con, $email, $firstname, $lastname, $username, $pw);
 
 // -2: email is already taken
 if($response == -2){
