@@ -1,0 +1,14 @@
+.admin-wrapper {
+	display: flex;
+	height: 100%;
+}
+
+.admin-wrapper .left-sidebar {
+	height: 100%;
+	border: 1px solid black;
+	flex: 2;
+}
+
+.admin-wrapper .admin-content {
+	flex: 8;
+}
