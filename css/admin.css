@@ -5,10 +5,56 @@
 
 .admin-wrapper .left-sidebar {
 	height: 100%;
-	border: 1px solid black;
 	flex: 2;
+	background: #f7f4f4;
+}
+
+.admin-wrapper .left-sidebar ul li a {
+	border-bottom: 1px solid #d3d3d3;
+	display: block;
+	padding: 16px;
+}
+
+.admin-wrapper .left-sidebar ul li a:hover {
+	background: black;
+	color: white;
 }
 
 .admin-wrapper .admin-content {
 	flex: 8;
+	height: 100%;
+	padding: 40px 100px 100px;
+	overflow-y: scroll;
+	background: #f7f4f4;
+	margin-left: 32px;
+	margin-right: 32px;
 }
+
+.admin-wrapper .admin-content .content-body table {
+	border-collapse: collapse;
+}
+
+.admin-wrapper .admin-content .content-body table thead th,
+.admin-wrapper .admin-content .content-body table tbody td {
+	padding: 16px;
+	border-bottom: 1px solid #d3d3d3d3;
+	text-align: left;
+}
+
+.edit:hover,
+.delete:hover,
+.publish:hover {
+	text-decoration: none;
+}
+
+.edit:hover {
+	color: rgb(152, 152, 231);
+}
+
+.delete:hover {
+	color: rgb(238, 123, 123);
+}
+
+/* .publish:hover {
+	color: rgb(138, 201, 138);
+} */
