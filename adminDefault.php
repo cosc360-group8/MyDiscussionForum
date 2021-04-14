@@ -3,7 +3,7 @@
 <?php
 
 include_once $_SERVER['DOCUMENT_ROOT']."/MyDiscussionForum/api/Database.php";
-include_once $_SERVER['DOCUMENT_ROOT']."/MyDiscussionForum/api/User.php";
+include_once $_SERVER['DOCUMENT_ROOT']."/MyDiscussionForum/api/Post.php";
 
 $db_obj = new Database();
 $db_con = $db_obj->connect();
