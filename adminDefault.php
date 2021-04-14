@@ -8,6 +8,10 @@ include_once $_SERVER['DOCUMENT_ROOT']."/MyDiscussionForum/api/Post.php";
 $db_obj = new Database();
 $db_con = $db_obj->connect();
 
+$skip = 0;
+$temp_post = new Post();
+$posts = $temp_post->getnewestposts($db_con, 5, $skip);
+
 ?>
 
     <main class="admin-wrapper">
@@ -20,7 +24,7 @@ $db_con = $db_obj->connect();
             </ul>
         </div>
 
-        <div class="admin-content">  
+        <div class="admin-content">
             <div class="button-group">
                 <a href="createPost.php">Add posts</a>
                 <a href="#">Manage posts</a>
@@ -35,28 +39,21 @@ $db_con = $db_obj->connect();
                         <th colspan="3">Action</th>
                     </thead>
                     <tbody>
-                        <tr>
-                            <td>1</td>
-                            <td>Tenet Review</td>
-                            <td>Ed Chambers</td>
-                            <td><a class="edit" href="">Edit</a></td>
-                            <td><a class="delete" href="">Delete</a></td>
-                            <!-- <td><a class="publish" href="">Publish</a></td> -->
-                        </tr>
-                        <tr>
-                            <td>2</td>
-                            <td>Situation at Barcelona</td>
-                            <td>John Smith</td>
-                            <td><a class="edit" href="">Edit</a></td>
-                            <td><a class="delete" href="">Delete</a></td>
-                            <!-- <td><a class="publish" href="">Publish</a></td> -->
-                        </tr>
+                    <?php foreach ($posts as $post): ?>
+                      <tr>
+                        <td><?php echo $post->id; ?></td>
+                        <td><?php echo $post->title; ?></td>
+                        <td><?php echo $post->user->username; ?></td>
+                        <td><a class="edit" href="">Edit</a></td>
+                        <td><a class="delete" href="">Delete</a></td>
+                      </tr>
+                    <?php endforeach; ?>
                     </tbody>
                 </table>
             </div>
-            
+
         </div>
 
     </main>
 
-<?php include('footer.php'); ?> 
+<?php include('footer.php'); ?>
