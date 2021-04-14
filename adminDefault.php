@@ -1,4 +1,14 @@
-<?php include('../header.php'); ?>
+<?php include('header.php'); ?>
+
+<?php
+
+include_once $_SERVER['DOCUMENT_ROOT']."/MyDiscussionForum/api/Database.php";
+include_once $_SERVER['DOCUMENT_ROOT']."/MyDiscussionForum/api/User.php";
+
+$db_obj = new Database();
+$db_con = $db_obj->connect();
+
+?>
 
     <main class="admin-wrapper">
 
@@ -12,7 +22,7 @@
 
         <div class="admin-content">  
             <div class="button-group">
-                <a href="../createPost.php">Add posts</a>
+                <a href="createPost.php">Add posts</a>
                 <a href="#">Manage posts</a>
             </div>
             <div class="content-body">
@@ -49,4 +59,4 @@
 
     </main>
 
-<?php include('../footer.php'); ?> 
+<?php include('footer.php'); ?> 
