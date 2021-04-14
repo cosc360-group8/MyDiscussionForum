@@ -11,6 +11,31 @@
     <link rel="stylesheet" href="../css/style.css">
     <link rel="stylesheet" href="../css/form.css">
 
+    <script type="text/javascript">
+        window.onload = function(){
+            var form = document.getElementById('login_form');
+            form.onsubmit = function(e){
+                checkReqFields(event);
+                //alert('hi');
+            }
+        }
+
+        // function to check field validity
+        function checkReqFields(event){
+            var email = document.getElementById('email');
+            var password = document.getElementById('password');        
+            // creating an array of required fields to check field validity
+            var required_fields = [email, password];
+            for(var i = 0; i < required_fields.length; i++){
+                if(required_fields[i].value.length == 0){  // if a field is empty
+                    required_fields[i].classList.add('invalid');
+                    alert('One or more fields are empty');
+                    event.preventDefault();               
+                }        
+            }          
+        }
+    </script>
+
 </head>
 <body>
     <nav>

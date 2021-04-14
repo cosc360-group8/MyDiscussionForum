@@ -15,12 +15,14 @@
         window.onload = function(){
             var form = document.getElementById('signup_form');
             form.onsubmit = function(e){
-                checkReqFields();
-                checkPasswordsMatch();
+                if(checkReqFields(event)){
+                    checkPasswordsMatch(event);
+                }
                 //alert('hi');
             }
         }
 
+        // function to check field validity
         function checkReqFields(event){
             var username = document.getElementById('username');
             var firstname = document.getElementById('firstname');
@@ -34,11 +36,15 @@
             for(var i = 0; i < required_fields.length; i++){
                 if(required_fields[i].value.length == 0){  // if a field is empty
                     required_fields[i].classList.add('invalid');
+                    alert('One or more fields are empty');
                     event.preventDefault();
-                }
+                    return false;
+                }        
             }
+            return true;    // all fields are valid
         }
 
+        // function to check if passwords match
         function checkPasswordsMatch(event){
             var password = document.getElementById('password');
             var password_check = document.getElementById('password-check');
