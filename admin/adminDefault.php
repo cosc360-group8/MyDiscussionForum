@@ -1,18 +1,18 @@
-<?php include('header.php'); ?>
+<?php include('../header.php'); ?>
 
     <main class="admin-wrapper">
 
         <div class="left-sidebar">
             <ul>
                 <li><a href="#">Manage posts</a></li>
-                <li><a href="admin-users.php">Manage users</a></li>
+                <li><a href="adminUsers.php">Manage users</a></li>
                 <li><a href="">Manage topics</a></li>
             </ul>
         </div>
 
         <div class="admin-content">  
             <div class="button-group">
-                <a href="createPost.php">Add posts</a>
+                <a href="../createPost.php">Add posts</a>
                 <a href="#">Manage posts</a>
             </div>
             <div class="content-body">
@@ -49,4 +49,4 @@
 
     </main>
 
-<?php include('footer.php'); ?> 
+<?php include('../footer.php'); ?> 
