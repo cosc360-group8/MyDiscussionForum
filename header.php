@@ -12,6 +12,7 @@
     <link rel="stylesheet" href="css/preview.css">
     <link rel="stylesheet" href="css/form.css">
     <link rel="stylesheet" href="css/admin.css">
+    <link rel="stylesheet" href="css/profile.css">
 
     <script type="text/javascript" src="js/main.js"></script>
 

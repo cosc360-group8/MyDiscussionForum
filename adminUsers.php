@@ -1,10 +1,20 @@
 <?php include('header.php'); ?>
 
+<?php
+
+include_once $_SERVER['DOCUMENT_ROOT']."/MyDiscussionForum/api/Database.php";
+include_once $_SERVER['DOCUMENT_ROOT']."/MyDiscussionForum/api/User.php";
+
+$db_obj = new Database();
+$db_con = $db_obj->connect();
+
+?>
+
     <main class="admin-wrapper">
 
         <div class="left-sidebar">
             <ul>
-                <li><a href="admin.php">Manage posts</a></li>
+                <li><a href="adminDefault.php">Manage posts</a></li>
                 <li><a href="#">Manage users</a></li>
                 <li><a href="">Manage topics</a></li>
             </ul>
