@@ -19,17 +19,17 @@ $posts = $temp_post->getnewestposts($db_con, 5, $skip);
 
         <div class="left-sidebar">
             <ul>
-                <li><a href="#">Manage posts</a></li>
+                <li><a href="adminPosts.php">Manage posts</a></li>
                 <li><a href="adminUsers.php">Manage users</a></li>
-                <li><a href="">Manage topics</a></li>
+                <li><a href="adminTopics.php">Manage topics</a></li>
             </ul>
         </div>
 
         <div class="admin-content">
-            <div class="button-group">
+            <!-- <div class="button-group">
                 <a href="createPost.php">Add posts</a>
                 <a href="#">Manage posts</a>
-            </div>
+            </div> -->
             <div class="content-body">
                 <h2 class="page-title">Manage posts</h2>
                 <table>

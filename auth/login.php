@@ -18,12 +18,10 @@ if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] == 1){
                 <h1>Login</h1>
 
                 <div class="input-fields">
-                    <!-- <label>Email: </label><br> -->
                     <input type="email" id="email" name="email" placeholder="email"><br>
                 </div>
 
                 <div class="input-fields">
-                    <!-- <label>Password: </label><br> -->
                     <input type="password" id="password" name="password" placeholder="password"><br>
                 </div>
 

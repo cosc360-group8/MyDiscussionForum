@@ -54,22 +54,20 @@ if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] == 1 && isset($_SESSIO
            <li>
             <a href="#">Profile</a>
            </li>
-           <li>
-            <a href="#">Settings</a>
-           </li>
+           
            <?php
                 if (isset($current_user) && $current_user->admin == 1){
             ?>
 
                 <li>
-                    <a href="./adminUsers.php">(OP) Users</a>
+                    <a href="./adminUsers.php">Admin</a>
                 </li>
-                <li>
+                <!-- <li>
                     <a href="./adminTopics.php">(OP) Topics</a>
                 </li>
                 <li>
                     <a href="./adminPosts.php">(OP) Posts</a>
-                </li>
+                </li> -->
             <?php
                 }
                 ?>

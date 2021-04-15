@@ -26,9 +26,9 @@ $users = $temp_user->getusers($db_con, 25, $skip);
 
         <div class="left-sidebar">
             <ul>
-                <li><a href="adminDefault.php">Manage posts</a></li>
-                <li><a href="#">Manage users</a></li>
-                <li><a href="">Manage topics</a></li>
+                <li><a href="adminPosts.php">Manage posts</a></li>
+                <li><a href="adminUsers.php">Manage users</a></li>
+                <li><a href="adminTopics.php">Manage topics</a></li>
             </ul>
         </div>
 
@@ -47,20 +47,6 @@ $users = $temp_user->getusers($db_con, 25, $skip);
                         <th colspan="3">Action</th>
                     </thead>
                     <tbody>
-                        <!--<tr>
-                            <td>1</td>
-                            <td>ed1782</td>
-                            <td>edchambers@hotmail.com</td>
-                            <td><a class="edit" href="">Edit</a></td>
-                            <td><a class="delete" href="">Delete</a></td>
-                        </tr>
-                        <tr>
-                            <td>2</td>
-                            <td>jsmith26</td>
-                            <td>jsmith26@gmail.com</td>
-                            <td><a class="edit" href="">Edit</a></td>
-                            <td><a class="delete" href="">Delete</a></td>
-                        </tr>-->
 
                         <?php
 
