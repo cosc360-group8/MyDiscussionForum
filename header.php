@@ -54,7 +54,6 @@ if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] == 1 && isset($_SESSIO
            <li>
             <a href="#">Profile</a>
            </li>
-           
            <?php
                 if (isset($current_user) && $current_user->admin == 1){
             ?>

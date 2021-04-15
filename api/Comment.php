@@ -164,6 +164,12 @@ class Comment {
 
         return true;
     }
-}
 
+    public function comment_html() {
+        echo "<div class=\"single-items\">";
+        echo "<h4>".$this->$user."</h4>"; 
+        echo "<p>".$this->$content."</p>"; 
+        echo "</div>";
+    }
+}
 ?>
