@@ -1,5 +1,7 @@
 <?php
 
+session_start();
+
 include_once $_SERVER['DOCUMENT_ROOT']."/MyDiscussionForum/api/Database.php";
 include_once $_SERVER['DOCUMENT_ROOT']."/MyDiscussionForum/api/User.php";
 
@@ -17,8 +19,13 @@ $uobj = new User();
 $response = $uobj->login($db_con, $email, $pswd);
 
 if($response){ 
-    print_r("success\n");
+    $_SESSION['loggedin'] = 1;
+    $_SESSION['user'] = base64_encode(serialize($uobj));
+    header('Location: ../../index.php');
 } else {
-    print_r("failed\n");
+    $_SESSION['loggedin'] = 0;
+    $_SESSION['user'] = null;
+    print_r('<script> alert("The entered email/password combination is invalid.");</script>');
+    header('Location: ../../auth/login.html');
 }
 ?>

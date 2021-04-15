@@ -1,6 +1,7 @@
-<?php include('header.php'); ?>
-
 <?php
+include('header.php');
+
+requireAdmin($current_user, './auth/login.php');
 
 include_once $_SERVER['DOCUMENT_ROOT']."/MyDiscussionForum/api/Database.php";
 include_once $_SERVER['DOCUMENT_ROOT']."/MyDiscussionForum/api/Post.php";

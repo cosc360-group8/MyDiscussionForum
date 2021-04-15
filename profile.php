@@ -1,4 +1,5 @@
-<?php include('header.php'); ?>
+<?php 
+include('header.php'); ?>
     <main class="flex-container">
         <aside class="side-bar post-content" id="profile-wrapper">
             <h1>Ed Chambers</h1>

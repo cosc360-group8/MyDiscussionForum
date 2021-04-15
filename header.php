@@ -1,3 +1,22 @@
+<?php
+session_start();
+
+include_once $_SERVER['DOCUMENT_ROOT']."/MyDiscussionForum/api/utils.php";
+include_once $_SERVER['DOCUMENT_ROOT']."/MyDiscussionForum/api/Database.php";
+include_once $_SERVER['DOCUMENT_ROOT']."/MyDiscussionForum/api/User.php";
+
+$current_user = null;
+if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] == 1 && isset($_SESSION['user'])){
+    $current_user = unserialize((base64_decode($_SESSION['user'])));
+
+    if ($current_user->enabled == 0){
+        $_SESSION['loggedin'] = 0;
+        $_SESSION['user'] = null;
+        print_r('<script> alert("The account you have been using was disabled by an admin."); </script>');
+    }
+}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -26,6 +45,9 @@
            <li>
                <a href="index.php">Home</a>
            </li>
+           <?php
+            if ($_SESSION['loggedin'] == 1) {
+           ?> 
            <li>
                <a href="createPost.php">Create Post</a>
            </li>
@@ -35,6 +57,40 @@
            <li>
             <a href="#">Settings</a>
            </li>
+           <?php
+                if (isset($current_user) && $current_user->admin == 1){
+            ?>
+
+                <li>
+                    <a href="./adminUsers.php">(OP) Users</a>
+                </li>
+                <li>
+                    <a href="./adminTopics.php">(OP) Topics</a>
+                </li>
+                <li>
+                    <a href="./adminPosts.php">(OP) Posts</a>
+                </li>
+            <?php
+                }
+                ?>
+
+                <li>
+                    <a href="./api/user/logout.php">Logout</a>
+            </li>
+
+            <?php
+            
+            } else {
+           ?>
+            <li>
+                <a href="./auth/login.php">Login</a>
+            </li>
+            <li>
+                <a href="./auth/signup.php">Sign Up</a>
+            </li>
+           <?php
+            }
+           ?>
        </ul>
        <div class="burger">
            <div class="line1"></div>

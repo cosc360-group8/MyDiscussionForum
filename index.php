@@ -1,4 +1,5 @@
 <?php
+include('header.php');
 
 include_once $_SERVER['DOCUMENT_ROOT']."/MyDiscussionForum/api/Database.php";
 include_once $_SERVER['DOCUMENT_ROOT']."/MyDiscussionForum/api/Post.php";
@@ -31,7 +32,6 @@ if (isset($board)){
     $posts = $temp_post->getnewestposts($db_con, 10, $skip);
 }
 
-include('header.php');
 ?>
     <main class="flex-container">
         <div class="blog-posts">     <!-- blog-posts consists of posts from different threads -->

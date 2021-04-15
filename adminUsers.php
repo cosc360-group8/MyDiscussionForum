@@ -1,9 +1,8 @@
-<?php include('header.php'); ?>
+<?php 
 
-<?php
+include('header.php'); 
 
-include_once $_SERVER['DOCUMENT_ROOT']."/MyDiscussionForum/api/Database.php";
-include_once $_SERVER['DOCUMENT_ROOT']."/MyDiscussionForum/api/User.php";
+requireAdmin($current_user, './auth/login.php');
 
 $db_obj = new Database();
 $db_con = $db_obj->connect();

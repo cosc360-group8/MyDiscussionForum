@@ -46,6 +46,21 @@ function timesince($datetime){
     return $retstr;
 }
 
+function requireAdmin($user, $redirect){
+    requireLogin($user, $redirect);
+    if (isset($user) && $user->admin == 1){
+        return;
+    }
+    header('Location: ' . $redirect);
+}
+
+function requireLogin($user, $redirect){
+    if (isset($user) && $user->enabled == 1){
+        return;
+    }
+    header('Location: '. $redirect);
+}
+
 function getminutes($secs){
     return floor($secs / 60.0);
 }

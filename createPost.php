@@ -1,4 +1,8 @@
-<?php include('header.php'); ?>
+<?php 
+include('header.php'); 
+
+requireLogin($current_user, './auth/login.php');
+?>
 
     <main class="flex-container">
       <div class="form-list">
