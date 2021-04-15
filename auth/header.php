@@ -59,6 +59,7 @@ if (!isset($_SESSION['loggedin'])){
            <li>
             <a href="#">Profile</a>
            </li>
+           
            <?php
                 if (isset($current_user) && $current_user->admin == 1){
             ?>
@@ -89,6 +90,9 @@ if (!isset($_SESSION['loggedin'])){
             </li>
             <li>
                 <a href="./signup.php">Sign Up</a>
+            </li>
+            <li>
+                <input id="search-bar" type="text" placeholder="Find a post">
             </li>
            <?php
             }

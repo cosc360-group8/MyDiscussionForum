@@ -90,6 +90,9 @@ if (!isset($_SESSION['loggedin'])){
             <li>
                 <a href="./auth/signup.php">Sign Up</a>
             </li>
+            <li>
+                <input id="search-bar" type="text" placeholder="Find a post">
+            </li>
            <?php
             }
            ?>
