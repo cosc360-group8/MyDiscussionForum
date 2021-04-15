@@ -12,6 +12,43 @@ class User {
     public $admin;
     public $enabled;
 
+    public function getusers($db, $limit, $skip){
+        $q = 'SELECT *
+              FROM ForumUsers
+              ORDER BY id';
+
+        $pre_q = $db->prepare($q);
+        $pre_q->execute();
+
+        $users = array();
+
+        $it_c = 0;
+        while($row = $pre_q->fetch(PDO::FETCH_ASSOC)){
+            $it_c++;
+            if ($it_c <= $skip)
+            {
+                continue;
+            } else if ($it_c > $limit + $skip){
+                break;
+            }
+
+            $u = new User();
+            $u->id = $row['id'];
+            $u->email = $row['email'];
+            $u->fname = $row['firstname'];
+            $u->lname = $row['lastname'];
+            $u->username = $row['username'];
+            $u->profile_img = $row['profile_img'];
+            $u->created_on = $row['created_on'];
+            $u->admin = $row['is_admin'];
+            $u->enabled = $row['is_enabled'];
+
+            array_push($users, $u);
+        }
+
+        return $users;
+    }
+
     public function login($db, $email, $ptxt_password){
         // verifying user by checking email and password
         $q = 'SELECT *
@@ -185,6 +222,64 @@ class User {
 
         // return true if a match if found
         return true;
+    }
+
+    public function toggleEnabled($db){
+        if (!isset($this->id) || empty($this->id)){
+            return false;
+        }
+
+        $q = 'UPDATE ForumUsers
+              SET is_enabled = ?
+              WHERE id = ?';
+
+        $new_enabled = 0;
+
+        $pre_q = $db->prepare($q);
+        if ($this->enabled == 1){
+            $pre_q->bindParam(1, $new_enabled);
+        } else {
+            $new_enabled = 1;
+            $pre_q->bindParam(1, $new_enabled);
+        }
+        $pre_q->bindParam(2, $this->id);
+        $pre_q->execute();
+
+        if ($pre_q->rowCount() > 0){
+            $this->enabled = $new_enabled;
+            return true;
+        }
+
+        return false;
+    }
+
+    public function toggleAdmin($db){
+        if (!isset($this->id) || empty($this->id)){
+            return false;
+        }
+
+        $q = 'UPDATE ForumUsers
+              SET is_admin = ?
+              WHERE id = ?';
+
+        $new_admin = 0;
+
+        $pre_q = $db->prepare($q);
+        if ($this->admin == 1){
+            $pre_q->bindParam(1, $new_admin);
+        } else {
+            $new_admin = 1;
+            $pre_q->bindParam(1, $new_admin);
+        }
+        $pre_q->bindParam(2, $this->id);
+        $pre_q->execute();
+
+        if ($pre_q->rowCount() > 0){
+            $this->admin = $new_admin;
+            return true;
+        }
+
+        return false;
     }
 }
 
