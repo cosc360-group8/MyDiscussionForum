@@ -15,6 +15,11 @@ if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] == 1 && isset($_SESSIO
         print_r('<script> alert("The account you have been using was disabled by an admin."); </script>');
     }
 }
+
+if (!isset($_SESSION['loggedin'])){
+    $_SESSION['loggedin'] = 0;
+}
+
 ?>
 
 <!DOCTYPE html>
