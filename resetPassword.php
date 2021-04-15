@@ -40,7 +40,7 @@ if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] == 1){
     </main>
     <script type="text/javascript">
         document.onload = function(){
-            var form = document.getElementById('signup_form');
+            var form = document.getElementById('passwordForgot_form');
             form.onsubmit = function(e){
                 checkReqFields();
                 //alert('hi');

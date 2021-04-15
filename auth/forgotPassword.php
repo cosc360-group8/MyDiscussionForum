@@ -14,7 +14,7 @@ if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] == 1){
     
     <main class="flex-container">
         <div class="form-list">
-            <form class="forms" id="passwordForgot_form" action="resetPassword.html" method="POST">
+            <form class="forms" id="passwordForgot_form" action="passwordRecover.php" method="POST">
                 <h1>Forgot password</h1>
 
                 <div class="input-fields">
@@ -38,38 +38,26 @@ if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] == 1){
         </div>
     </main>
     <script type="text/javascript">
-        document.onload = function(){
-            var form = document.getElementById('signup_form');
+        window..onload = function(){
+            var form = document.getElementById('passwordForgot_form');
             form.onsubmit = function(e){
-                checkReqFields();
+                checkReqFields(event);
                 //alert('hi');
             }
         }
 
-        function checkReqFields(e){
-            var username = document.getElementById('username');
+        function checkReqFields(event){
             var email = document.getElementById('email');
-            var password = document.getElementById('password');
-            var password_check = document.getElementById('password-check');
-
-            // create an array of required fields.
-            // for each field, if it is empty, add class 'invalid' to highlight the field
-            var required_fields = [username, email, password, password_check];
+            var password = document.getElementById('password');        
+            // creating an array of required fields to check field validity
+            var required_fields = [email, password];
             for(var i = 0; i < required_fields.length; i++){
-                if(required_fields[i].value == ''){
+                if(required_fields[i].value.length == 0){  // if a field is empty
                     required_fields[i].classList.add('invalid');
-                    e.preventDefault();
-                }
-            }
-
-            // check if original and re-entered passwords match
-            // if passords don't match, add class 'invalid' and notify user that passwords don't match
-            if(password.value.localeCompare(password_check.value) != 0){    // both the strings are not equal
-                password.classList.add('invalid');
-                password_check.classList.add('invalid');
-                alert('Passwords don\'t match');
-                e.preventDefault();
-            } 
+                    alert('One or more fields are empty');
+                    event.preventDefault();               
+                }        
+            }          
         }
 
     </script>
