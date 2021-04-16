@@ -3,12 +3,10 @@
 include("header.php");
 
 if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] == 1){
-    header('Lcoation: ../index.php');
+    header('Location: ../index.php');
 }
 
 ?>
-
-
     <div class="forum-logo">
         <h1>MDF&reg;</h1>
     </div> 
@@ -29,10 +27,6 @@ if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] == 1){
                 <div style="text-align: center;">
                 <input class="buttons" type="submit" value="Confirm">  
                 </div>        
-                
-                <!-- <div style="text-align: center; font-size: 15px;">
-                    <p>Forgot your username? <a href="#">here</a></p>
-                </div> -->
             </form>
 
             
