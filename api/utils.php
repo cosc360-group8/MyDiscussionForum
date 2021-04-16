@@ -77,4 +77,35 @@ function getyears($secs){
     return floor($secs / 31536000.0);
 }
 
+function uploadImage($dir, $file, $uid){
+    $fbn = basename($file['name']);
+    $ext = strtolower(pathinfo($fbn, PATHINFO_EXTENSION));
+
+    if ($ext != 'jpg' && $ext != 'png' && $ext != 'jpeg'){
+        die("extension");
+        return false;
+    }
+
+    if (getimagesize($file['tmp_name']) === false || $file['size'] > 1048576){
+        die("file size or not an image");
+        return false;
+    }
+
+    $file_name = hash('md5', $fbn . ' - ' . $uid . ' - ' . date("Y-m-d h:i:sa", strtotime("now"))) . '.' . $ext;
+
+    $file_path = $dir . $file_name;
+
+    while (file_exists($file_path)){
+        $file_name = hash('md5', $file_path . date("Y-m-d h:i:sa", strtotime("now"))) . '.' . $ext;
+        $file_path = $dir . $file_name;
+    }
+
+    if (copy($file['tmp_name'], $file_path)){
+        return $file_name;
+    }
+    die ("something went wrong.. who knows what   ".$file_path);
+    return false;
+    
+}
+
 ?>

@@ -11,6 +11,7 @@ requireLogin($current_user, './auth/login.php');
           id="create_post_form"
           action="api/post/createpost.php"
           method="POST"
+          enctype="multipart/form-data"
         >
           <h1>Create Post</h1>
 
@@ -31,6 +32,15 @@ requireLogin($current_user, './auth/login.php');
               placeholder="Post Title"
             /><br />
           </div>
+          
+          <div class="input-fields">
+            <input
+              type="file"
+              id="coverImage"
+              name="coverImage"
+              placeholder="Cover Image"
+            /><br />
+          </div>
 
           <div class="input-fields">
             <textarea
@@ -41,14 +51,6 @@ requireLogin($current_user, './auth/login.php');
             ><br />
           </div>
 
-          <!-- <div class="input-fields">
-            <input
-              type="file"
-              id="coverImage"
-              name="coverImage"
-              placeholder="Cover Image"
-            /><br />
-          </div> -->
 
           <div style="text-align: center">
             <input class="buttons" type="submit" value="Create Post" />
