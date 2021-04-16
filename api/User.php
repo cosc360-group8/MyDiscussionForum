@@ -281,6 +281,43 @@ class User {
 
         return false;
     }
+
+    // function to return user details
+   /* public function getUserInfo($db, $username, $email){
+        $q = 'SELECT * FROM ForumUsers 
+              WHERE username = :username
+              AND email = :email';
+      
+        // prepared statement
+        $pre_q = $db->prepare($q);
+        $pre_q->bindValue(':username', $username);
+        $pre_q->bindValue(':email', $email);
+        $pre_q->execute();
+
+        // return false if no match if found
+        if ($pre_q->rowCount() < 1){
+            return false;
+        }
+
+        // a match if found
+        $row = $pre_q->fetch(PDO::FETCH_ASSOC);
+
+        $this->id = $row['id'];
+        $this->email = $row['email'];
+        $this->fname = $row['firstname'];
+        $this->lname = $row['lastname'];
+        $this->username = $row['username'];
+        $this->profile_img = $row['profile_img'];
+        $this->created_on = $row['created_on'];
+        $this->admin = $row['is_admin'];
+        $this->enabled = $row['is_enabled'];
+
+        // return true if a match if found
+        return true;
+    } */
+
 }
+
+
 
 ?>
