@@ -28,15 +28,10 @@ $users = $temp_user->getusers($db_con, 25, $skip);
             <ul>
                 <li><a href="adminPosts.php">Manage posts</a></li>
                 <li><a href="adminUsers.php">Manage users</a></li>
-                <li><a href="adminTopics.php">Manage topics</a></li>
             </ul>
         </div>
 
         <div class="admin-content">  
-            <!--<div class="button-group">
-                <a href="#">Add users</a> </!-- missing html --/>
-                <a href="#">Manage users</a>
-            </div>-->
             <div class="content-body">
                 <h2 class="page-title">Manage users</h2>
                 <table>
