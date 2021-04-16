@@ -28,8 +28,7 @@ if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] == 1){
                 <input class="buttons" type="submit" value="Confirm">  
                 </div>        
             </form>
-
-            
+ 
         </div>
     </main>
     <script type="text/javascript">
@@ -37,7 +36,6 @@ if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] == 1){
             var form = document.getElementById('passwordForgot_form');
             form.onsubmit = function(e){
                 checkReqFields();
-                //alert('hi');
             }
         }
 
