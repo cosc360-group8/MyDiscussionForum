@@ -15,7 +15,7 @@
 	padding: 16px;
 }
 
-.admin-wrapper .left-sidebar ul li a:hover {
+.admin-wrapper .left-sidebar ul li .highlight-tab {
 	background: black;
 	color: white;
 }

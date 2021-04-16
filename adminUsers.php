@@ -27,7 +27,7 @@ $users = $temp_user->getusers($db_con, 25, $skip);
         <div class="left-sidebar">
             <ul>
                 <li><a href="adminPosts.php">Manage posts</a></li>
-                <li><a href="adminUsers.php">Manage users</a></li>
+                <li><a class="highlight-tab" href="adminUsers.php">Manage users</a></li>
             </ul>
         </div>
 

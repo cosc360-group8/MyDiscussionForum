@@ -19,7 +19,7 @@ $posts = $temp_post->getnewestposts($db_con, 5, $skip);
 
         <div class="left-sidebar">
             <ul>
-                <li><a href="adminPosts.php">Manage posts</a></li>
+                <li><a class="highlight-tab" href="adminPosts.php">Manage posts</a></li>
                 <li><a href="adminUsers.php">Manage users</a></li>
             </ul>
         </div>
