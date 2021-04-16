@@ -34,7 +34,6 @@ if (!isset($_SESSION['loggedin'])){
     <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="../css/style.css">
     <link rel="stylesheet" href="../css/preview.css">
-    <link rel="stylesheet" href="css/post.css">
     <link rel="stylesheet" href="../css/form.css">
     <link rel="stylesheet" href="../css/admin.css">
     <link rel="stylesheet" href="../css/profile.css">
@@ -58,7 +57,7 @@ if (!isset($_SESSION['loggedin'])){
                <a href="../createPost.php">Create Post</a>
            </li>
            <li>
-            <a href="profile.php">Profile</a>
+            <a href="#">Profile</a>
            </li>
            
            <?php
@@ -66,7 +65,13 @@ if (!isset($_SESSION['loggedin'])){
             ?>
 
                 <li>
-                    <a href="../adminUsers.php">Admin</a>
+                    <a href="../adminUsers.php">(OP) Users</a>
+                </li>
+                <li>
+                    <a href="../adminTopics.php">(OP) Topics</a>
+                </li>
+                <li>
+                    <a href="../adminPosts.php">(OP) Posts</a>
                 </li>
             <?php
                 }
