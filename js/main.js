@@ -14,3 +14,7 @@ const navSlide = () => {
 }
 
 navSlide();
+
+function post_redirect($id){
+    window.location.href = "./post.php?id=" + $id;
+}

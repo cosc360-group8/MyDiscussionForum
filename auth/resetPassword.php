@@ -3,7 +3,7 @@
 include("header.php");
 
 if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] == 1){
-    header('Location: ../index.php');
+    header('Lcoation: ../index.php');
 }
 
 ?>

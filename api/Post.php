@@ -290,7 +290,7 @@ class Post {
             return false;
         }
 
-        echo '<div class="post-content">';
+        echo '<div class="post-content" onclick="post_redirect('.$this->id.')">';
         echo '<h2 class="thread"><a href="./?board='.$this->board.'">/'.$this->board.'</a></h2>';
         echo '<div class="post-info">';
         echo '<span>'.timesince($this->date_posted).'</span>';

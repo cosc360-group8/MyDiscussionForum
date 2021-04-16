@@ -1,55 +1,84 @@
-<?php include('header.php'); ?>
+<?php include('header.php'); 
+
+include_once $_SERVER['DOCUMENT_ROOT']."/MyDiscussionForum/api/Post.php";
+include_once $_SERVER['DOCUMENT_ROOT']."/MyDiscussionForum/api/Comment.php";
+
+if (!isset($_GET['id'])){
+    header('Location: ./index.php');
+}
+
+$pid = intval($_GET['id']);
+
+$db_obj = new Database();
+$db_con = $db_obj->connect();
+
+$post = new Post();
+
+if (!$post->getpostbyid($db_con, $pid)){
+    header('Location: ./index.php');
+}
+
+$skip = 0;
+if (isset($_GET['skip'])){
+    if (!empty($_GET['skip'])){
+        $skip = intval($_GET['skip']);
+        if ($skip < 0){
+            $skip = 0;
+        }
+    }
+}
+
+$temp_comment = new Comment();
+$comments = $temp_comment->getpostcomments($db_con, $post->id, 25, $skip);
+
+?>
     <main class="flex-container">
         <div class="blog-posts">     <!-- blog-posts consists of posts from different threads -->
             <div class="post-content">
-                <h2 class="thread">/football</h2>
+                <h2 class="thread"><?php print_r('<a href="./index.php?board='.$post->board.'">/'.$post->board.'</a>'); ?></h2>
                 <div class="post-info">
-                    <span>4 hours ago</span>
+                    <span><?php print_r(timesince($post->date_posted)); ?></span>
                 </div>
-                <h1 class="post-title">The situation at Barcelona</h1>
+                <h1 class="post-title"><?php print_r($post->title); ?></h1>
                 <figure class="post-pic">
-                    <img src="images\fcb.webp" title="The situation at Barcelona"  />
+                    <img src="<?php print_r($post->img_url); ?>" title="<?php print_r($post->title); ?>"  />
                 </figure>
-                <span class="publisher">by boi1da</span>
+                <span class="publisher">by <?php print_r($post->user->username); ?></span>
                 <p class="post-text">
-                   Lorem ipsum dolor sit, amet consectetur adipisicing elit. Repellendus pariatur incidunt iste inventore sequi
-                   tempora at ipsa quia deleniti necessitatibus ad enim illo corrupti esse commodi praesentium sunt,
-                   tenetur repudiandae.
+                   <?php print_r($post->content); ?>
                 </p>
             </div>
 
-
             <div class="comment-wrapper">
-                <form action="" class="form">
-                    <div class="input-group">
-                        <label for="name">Name</label><br>
-                        <input type="text" id="name" placeholder="Enter your name:" required>
-                    </div>
-                    <div class="input-group">
-                        <label for="email">Email</label><br>
-                        <input type="text" id="email" placeholder="Enter your email:" required>
-                    </div>
+            <?php 
+                if (isset($current_user)){
+
+                    ?>
+                <form action="./api/comment/create.php" method="POST" class="form">
                     <div class="input-group">
                         <label for="comment">Comment</label><br>
-                        <textarea id="comment" placeholder="Enter your comment:" required></textarea>
+                        <textarea id="comment" name="comment" placeholder="Enter your comment" required></textarea>
                     </div>
+                    <input type="hidden" name="pid" value="<?php print_r($post->id); ?>" />
+                    <input type="submit" />
                 </form>
+                <?php
+                }
+                ?>
                 <div class="prev-comments">
-                    <div class="single-items">
-                        <h4>Kevin Nguyen</h4>
-                        <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Vitae, nobis fugiat non obcaecati quod culpa fuga reprehenderit consectetur, reiciendis optio facere laboriosam qui. Cumque incidunt, eaque ea dolorem accusamus perferendis temporibus, totam dolor laboriosam porro perspiciatis officia quos consequuntur doloremque voluptas maiores labore mollitia accusantium cum hic quisquam numquam? Maxime!</p>
-                    </div>
-                    <div class="single-items">
-                        <h4>Jane Upton</h4>
-                        <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Vitae, nobis fugiat non obcaecati quod culpa fuga reprehenderit consectetur, reiciendis optio facere laboriosam qui. Cumque incidunt, eaque ea dolorem accusamus perferendis temporibus, totam dolor laboriosam porro perspiciatis officia quos consequuntur doloremque voluptas maiores labore mollitia accusantium cum hic quisquam numquam? Maxime!</p>
-                    </div>
+                    <?php
+                        //print_r($comments);
+                        foreach($comments as $c){
+                            $outstr = '<div class="single-items"><h4>';
+                            $outstr .= $c->user->username;
+                            $outstr .= '</h4><p>';
+                            $outstr .= $c->content;
+                            $outstr .= '</p></div>';
+                            print_r($outstr);
+                        }
+                    ?>
                 </div>
             </div>
         </div>
-
-        <aside class="side-bar post-content">
-            <h1>Trending</h1>
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Et dignissimos sint fugit delectus, eligendi quos perferendis nisi deleniti dolorem possimus aliquam provident culpa nobis neque ratione quo consectetur est iste.</p>
-        </aside>
     </main>
 <?php include('footer.php'); ?>
