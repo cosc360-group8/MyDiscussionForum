@@ -35,6 +35,7 @@ if (!isset($_SESSION['loggedin'])){
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/preview.css">
     <link rel="stylesheet" href="css/form.css">
+    <link rel="stylesheet" href="css/post.css">
     <link rel="stylesheet" href="css/admin.css">
     <link rel="stylesheet" href="css/profile.css">
 
@@ -57,7 +58,7 @@ if (!isset($_SESSION['loggedin'])){
                <a href="createPost.php">Create Post</a>
            </li>
            <li>
-            <a href="#">Profile</a>
+            <a href="Profile.php">Profile</a>
            </li>
            <?php
                 if (isset($current_user) && $current_user->admin == 1){
