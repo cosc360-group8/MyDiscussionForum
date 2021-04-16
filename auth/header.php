@@ -66,13 +66,7 @@ if (!isset($_SESSION['loggedin'])){
             ?>
 
                 <li>
-                    <a href="../adminUsers.php">(OP) Users</a>
-                </li>
-                <li>
-                    <a href="../adminTopics.php">(OP) Topics</a>
-                </li>
-                <li>
-                    <a href="../adminPosts.php">(OP) Posts</a>
+                    <a href="../adminUsers.php">Admin</a>
                 </li>
             <?php
                 }
