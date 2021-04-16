@@ -26,7 +26,7 @@ if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] == 1){
                 </div>
 
                 <div>
-                    <a href="#">Forgot Password?</a>
+                    <a href="forgotPassword.php">Forgot Password?</a>
                 </div>
 
                 <div style="text-align: center;">
@@ -34,7 +34,7 @@ if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] == 1){
                 </div>
 
                 <div style="text-align: center; font-size: 15px;">
-                    <p>Not a Member? <a href="./signup.html">Sign Up </a>now</p>
+                    <p>Not a Member? <a href="./signup.php">Sign Up </a>now</p>
                 </div>
             </form>            
         </div>

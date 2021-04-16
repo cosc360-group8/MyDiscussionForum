@@ -46,7 +46,7 @@ if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] == 1){
                 </div>        
                 
                 <div style="text-align: center; font-size: 15px;">
-                    <p>Already a Member? Login <a href="./login.html">here</a></p>
+                    <p>Already a Member? Login <a href="./login.php">here</a></p>
                 </div>
             </form>           
         </div>
