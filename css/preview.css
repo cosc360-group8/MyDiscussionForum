@@ -16,11 +16,10 @@ img {
 
 .post-content {
   width: 85%;
-  height: 30%;
   background-color: rgb(247, 244, 244);
   border: solid 1pt rgb(218, 218, 218);
   border-radius: 15px;
-  margin-bottom: 50px;
+  margin-bottom: 30px;
   padding: 32px;
   cursor: pointer;
   box-shadow: 0 1 3rem rgb(179, 177, 177);
@@ -30,10 +29,23 @@ img {
   margin-bottom: 16px;
 }
 
-.post-pic img {
-  width: 25%;
+.post-info span {
+  color: #999;
+}
+
+.post-inner {
+  display: flex;
+  padding-top: 1em;
+}
+
+.post-pic {
+  flex: 0 0 25%;
   margin-right: 2em;
-  float: left;
+  display: inline-block;
+}
+
+.post-pic img {
+  width: 100%;
 }
 
 .publisher {
@@ -49,11 +61,6 @@ img {
   .blog-post {
     max-width: 80rem;
   }
-
-  .post-pic {
-    min-width: 30rem;
-    max-width: 30rem;
-  }
 }
 
 @media screen and (max-width: 868px) {
@@ -68,8 +75,11 @@ img {
     flex-direction: column;
   }
 
+  .post-inner {
+    flex-direction: column;
+  }
   .post-pic {
-    min-width: 100%;
-    max-width: 100%;
+    flex: 0 0 100%;
+    margin: 0;
   }
 }

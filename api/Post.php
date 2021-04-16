@@ -295,13 +295,17 @@ class Post {
         echo '<div class="post-info">';
         echo '<span>'.timesince($this->date_posted).'</span>';
         echo '</div>';
+        echo '<div class="post-inner">';
         echo '<figure class="post-pic">';
         echo '<img src="'.$this->img_url.'" title="'.$this->title.'" />';
         echo '</figure>';
+        echo '<div>';
         echo '<span class="publisher">by '.$this->user->username.'</span>';
         echo '<p class="post-text">';
         echo $this->content;
         echo '</p>';
+        echo '</div>';
+        echo '</div>';
         echo '</div>';
     }
 }
