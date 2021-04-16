@@ -57,7 +57,7 @@ if (!isset($_SESSION['loggedin'])){
                <a href="createPost.php">Create Post</a>
            </li>
            <li>
-            <a href="#">Profile</a>
+            <a href="profile.php">Profile</a>
            </li>
            <?php
                 if (isset($current_user) && $current_user->admin == 1){
@@ -66,12 +66,6 @@ if (!isset($_SESSION['loggedin'])){
                 <li>
                     <a href="./adminUsers.php">Admin</a>
                 </li>
-                <!-- <li>
-                    <a href="./adminTopics.php">(OP) Topics</a>
-                </li>
-                <li>
-                    <a href="./adminPosts.php">(OP) Posts</a>
-                </li> -->
             <?php
                 }
                 ?>
