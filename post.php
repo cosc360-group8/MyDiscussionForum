@@ -1,6 +1,6 @@
 <?php include('header.php'); 
 
-$limit = 1;
+$limit = 25;
 
 include_once $_SERVER['DOCUMENT_ROOT']."/MyDiscussionForum/api/Post.php";
 include_once $_SERVER['DOCUMENT_ROOT']."/MyDiscussionForum/api/Comment.php";

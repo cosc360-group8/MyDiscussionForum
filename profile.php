@@ -2,7 +2,7 @@
 
 include('header.php');
 
-$limit = 1;
+$limit = 10;
 
 include_once $_SERVER['DOCUMENT_ROOT']."/MyDiscussionForum/api/Database.php";
 include_once $_SERVER['DOCUMENT_ROOT']."/MyDiscussionForum/api/Post.php";

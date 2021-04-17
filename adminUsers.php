@@ -2,7 +2,7 @@
 
 include('header.php'); 
 
-$limit = 1;
+$limit = 10;
 
 requireAdmin($current_user, './auth/login.php');
 
