@@ -33,6 +33,7 @@ $last_user = $skip + count($users);
             <ul>
                 <li><a href="adminPosts.php">Manage posts</a></li>
                 <li><a class="highlight-tab" href="adminUsers.php">Manage users</a></li>
+                <li><a href="adminComments.php">Manage comments</a></li>
             </ul>
         </div>
 

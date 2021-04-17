@@ -34,6 +34,7 @@ $last_post = $skip + count($posts);
             <ul>
                 <li><a class="highlight-tab" href="adminPosts.php">Manage posts</a></li>
                 <li><a href="adminUsers.php">Manage users</a></li>
+                <li><a href="adminComments.php">Manage comments</a></li>
             </ul>
         </div>
 
@@ -53,7 +54,6 @@ $last_post = $skip + count($posts);
                         <td><?php echo $post->id; ?></td>
                         <td><?php echo $post->title; ?></td>
                         <td><?php echo $post->user->username; ?></td>
-                        <td><a class="edit" href="">Edit</a></td>
                         <td><a class="delete" href="">Delete</a></td>
                       </tr>
                     <?php endforeach;
