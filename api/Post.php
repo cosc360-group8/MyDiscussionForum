@@ -205,7 +205,7 @@ class Post {
 
         $posts = array();
         
-        $this->lastrowcount = $pre_q->rowCount();
+        $this->lastrowcount = 0;
 
         $it_c = 0;
 
@@ -216,6 +216,8 @@ class Post {
             $pre_q = $db->prepare($q);
             $pre_q->bindParam(1, $token);
             $pre_q->execute();
+
+            $this->lastrowcount += $pre_q->rowCount();
 
             while ($row = $pre_q->fetch(PDO::FETCH_ASSOC)){
                 $it_c++;
