@@ -348,7 +348,7 @@ class User {
 
         // prepared statement
         $pre_q = $db->prepare($q);
-        $pre_q->bindValue(:code, $code);
+        $pre_q->bindValue(':code', $code);
         $pre_q->execute();
 
         $this->lastrowcount = $pre_q->rowCount();
