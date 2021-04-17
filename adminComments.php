@@ -4,7 +4,7 @@ include('header.php');
 
 include_once $_SERVER['DOCUMENT_ROOT']."/MyDiscussionForum/api/Comment.php";
 
-$limit = 1;
+$limit = 10;
 
 requireAdmin($current_user, './auth/login.php');
 
@@ -82,7 +82,7 @@ $last_comment = $skip + count($comments);
                                     <td><?php print_r($comment->user->username); ?></td>
                                     <td><?php print_r($comment->content); ?></td>
                                     <td><?php print_r(date("Y-m-d h:i:sa", $comment->dateposted));?></td>
-                                    <td><a class="delete" href="">Delete</a></td>
+                                    <td><a class="delete" href="./api/comment/delete.php?id=<?php print_r($comment->id); ?>">Delete</a></td>
                                 </tr>
                             <?php
                         }

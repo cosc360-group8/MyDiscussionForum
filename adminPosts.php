@@ -1,7 +1,7 @@
 <?php
 include('header.php');
 
-$limit = 2;
+$limit = 10;
 
 requireAdmin($current_user, './auth/login.php');
 
@@ -78,7 +78,7 @@ $last_post = $skip + count($posts);
                         <td><?php echo $post->id; ?></td>
                         <td><?php echo $post->title; ?></td>
                         <td><?php echo $post->user->username; ?></td>
-                        <td><a class="delete" href="">Delete</a></td>
+                        <td><a class="delete" href="./api/post/delete.php?id=<?php print_r($post->id); ?>">Delete</a></td>
                       </tr>
                     <?php endforeach;
                     ?>
