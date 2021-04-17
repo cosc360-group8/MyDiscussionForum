@@ -15,6 +15,10 @@ const navSlide = () => {
 
 navSlide();
 
-function post_redirect($id){
-    window.location.href = "./post.php?id=" + $id;
+function post_redirect(id){
+    window.location.href = "./post.php?id=" + id;
+}
+
+function redirect(url){
+    window.location.href = url;
 }

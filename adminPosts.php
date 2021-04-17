@@ -1,7 +1,7 @@
 <?php
 include('header.php');
 
-$limit = 2;
+$limit = 10;
 
 requireAdmin($current_user, './auth/login.php');
 
@@ -46,15 +46,39 @@ $last_post = $skip + count($posts);
                         <th>ID</th>
                         <th>Title</th>
                         <th>Author</th>
-                        <th colspan="3">Action</th>
+                        <th>Action</th>
                     </thead>
+                    <tfoot>
+                        <td colspan="2">
+                        <?php
+                            if ($first_post > 1){
+                                $newskip = (intval($skip) - $limit);
+                                if ($newskip < 0){
+                                    $newskip = 0;
+                                }
+                                print_r('<a href="./adminPosts.php?skip='. $newskip .'">Previous Page</a>');
+                            }
+                        ?>
+                        </td>
+                        <td colspan="2">
+                        <?php
+                            if ($last_post < $total_posts){
+                                $newskip = (intval($skip) + $limit);
+                                if ($newskip < 0){
+                                    $newskip = 0;
+                                }
+                                print_r('<a href="./adminPosts.php?skip='. $newskip .'">Next</a>');
+                            }
+                        ?>
+                        </td>
+                    </tfoot>
                     <tbody>
                     <?php foreach ($posts as $post): ?>
                       <tr>
                         <td><?php echo $post->id; ?></td>
                         <td><?php echo $post->title; ?></td>
                         <td><?php echo $post->user->username; ?></td>
-                        <td><a class="delete" href="">Delete</a></td>
+                        <td><a class="delete" href="./api/post/delete.php?id=<?php print_r($post->id); ?>">Delete</a></td>
                       </tr>
                     <?php endforeach;
                     ?>
@@ -62,25 +86,6 @@ $last_post = $skip + count($posts);
                     
                     </tbody>
                 </table>
-                <?php
-                    print_r("<br/><br/>");
-
-                    if ($first_post > 1){
-                        $newskip = (intval($skip) - $limit);
-                        if ($newskip < 0){
-                            $newskip = 0;
-                        }
-                        print_r('<a href="./adminPosts.php?skip='. $newskip .'">Previous</a>');
-                    }
-
-                    if ($last_post < $total_posts){
-                        $newskip = (intval($skip) + $limit);
-                        if ($newskip < 0){
-                            $newskip = 0;
-                        }
-                        print_r('<a href="./adminPosts.php?skip='. $newskip .'">Next</a>');
-                    }
-                ?>
             </div>
 
         </div>

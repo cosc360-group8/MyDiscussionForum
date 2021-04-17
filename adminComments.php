@@ -4,7 +4,7 @@ include('header.php');
 
 include_once $_SERVER['DOCUMENT_ROOT']."/MyDiscussionForum/api/Comment.php";
 
-$limit = 1;
+$limit = 10;
 
 requireAdmin($current_user, './auth/login.php');
 
@@ -49,6 +49,30 @@ $last_comment = $skip + count($comments);
                     <th>Date Created</th>
                     <th>Action</th>
                 </thead>
+                <tfoot>
+                        <td colspan="2">
+                        <?php
+                            if ($first_comment > 1){
+                                $newskip = (intval($skip) - $limit);
+                                if ($newskip < 0){
+                                    $newskip = 0;
+                                }
+                                print_r('<a href="./adminComments.php?skip='. $newskip .'">Previous Page</a>');
+                            }
+                        ?>
+                        </td><td></td>
+                        <td colspan="2">
+                        <?php
+                            if ($last_comment < $total_comments){
+                                $newskip = (intval($skip) + $limit);
+                                if ($newskip < 0){
+                                    $newskip = 0;
+                                }
+                                print_r('<a href="./adminComments.php?skip='. $newskip .'">Next Page</a>');
+                            }
+                        ?>
+                        </td>
+                    </tfoot>
                 <tbody>
                     <?php
                         foreach($comments as $comment){
@@ -58,32 +82,13 @@ $last_comment = $skip + count($comments);
                                     <td><?php print_r($comment->user->username); ?></td>
                                     <td><?php print_r($comment->content); ?></td>
                                     <td><?php print_r(date("Y-m-d h:i:sa", $comment->dateposted));?></td>
-                                    <td><a class="delete" href="">Delete</a></td>
+                                    <td><a class="delete" href="./api/comment/delete.php?id=<?php print_r($comment->id); ?>">Delete</a></td>
                                 </tr>
                             <?php
                         }
                     ?>
                 </tbody>
             </table>
-            <?php
-                    print_r("<br/><br/>");
-
-                    if ($first_comment > 1){
-                        $newskip = (intval($skip) - $limit);
-                        if ($newskip < 0){
-                            $newskip = 0;
-                        }
-                        print_r('<a href="./adminComments.php?skip='. $newskip .'">Previous</a>');
-                    }
-
-                    if ($last_comment < $total_comments){
-                        $newskip = (intval($skip) + $limit);
-                        if ($newskip < 0){
-                            $newskip = 0;
-                        }
-                        print_r('<a href="./adminComments.php?skip='. $newskip .'">Next</a>');
-                    }
-                ?>
         </div>
     </div>
 </main>

@@ -1,7 +1,7 @@
 <?php
 include('header.php');
 
-$limit = 2;
+$limit = 25;
 
 include_once $_SERVER['DOCUMENT_ROOT']."/MyDiscussionForum/api/Database.php";
 include_once $_SERVER['DOCUMENT_ROOT']."/MyDiscussionForum/api/Post.php";
@@ -55,7 +55,7 @@ $last_post = count($posts) + $skip;
                 $post->board_html();
             }
 
-            print_r("<br/><br/>");
+            print_r("<br/><center>");
 
             if ($first_post > 1){
                 $newskip = (intval($skip) - $limit);
@@ -63,11 +63,17 @@ $last_post = count($posts) + $skip;
                     $newskip = 0;
                 }
                 if (isset($board)){
-                    print_r('<a href="./index.php?board='.$board.'&skip='. $newskip .'">Previous</a>');
+                    ?>
+                    <button onclick="redirect('./index.php?board=<?php print_r($board); ?>&skip=<?php print_r($newskip); ?>');">Previous Page</button>
+                    <?php
                 } else if (isset($search)){
-                    print_r('<a href="./index.php?search='.$board.'&skip='. $newskip .'">Previous</a>');
+                    ?>
+                    <button onclick="redirect('./index.php?search=<?php print_r($search); ?>&skip=<?php print_r($newskip); ?>');">Previous Page</button>
+                    <?php
                 } else {
-                    print_r('<a href="./index.php?skip='. $newskip .'">Previous</a>');
+                    ?>
+                    <button onclick="redirect('./index.php?skip=<?php print_r($newskip); ?>');">Previous Page</button>
+                    <?php
                 }
                 
             }
@@ -78,13 +84,21 @@ $last_post = count($posts) + $skip;
                     $newskip = 0;
                 }
                 if (isset($board)){
-                    print_r('<a href="./index.php?board='.$board.'&skip='. $newskip .'">Previous</a>');
+                    ?>
+                    <button onclick="redirect('./index.php?board=<?php print_r($board); ?>&skip=<?php print_r($newskip); ?>');">Next Page</button>
+                    <?php
                 } else if (isset($search)){
-                    print_r('<a href="./index.php?search='.$board.'&skip='. $newskip .'">Previous</a>');
+                    ?>
+                    <button onclick="redirect('./index.php?search=<?php print_r($search); ?>&skip=<?php print_r($newskip); ?>');">Next Page</button>
+                    <?php
                 } else {
-                    print_r('<a href="./index.php?skip='. $newskip .'">Next</a>');
+                    ?>
+                    <button onclick="redirect('./index.php?skip=<?php print_r($newskip); ?>');">Next Page</button>
+                    <?php
                 }
             }
+
+            print_r("</center>");
 
             ?>
         </div>

@@ -2,7 +2,7 @@
 
 include('header.php'); 
 
-$limit = 1;
+$limit = 10;
 
 requireAdmin($current_user, './auth/login.php');
 
@@ -45,8 +45,32 @@ $last_user = $skip + count($users);
                         <th>ID</th>
                         <th>Username</th>
                         <th>Email</th>
-                        <th colspan="3">Action</th>
+                        <th colspan="2">Action</th>
                     </thead>
+                    <tfoot>
+                        <td colspan="2">
+                        <?php
+                            if ($first_user > 1){
+                                $newskip = (intval($skip) - $limit);
+                                if ($newskip < 0){
+                                    $newskip = 0;
+                                }
+                                print_r('<a href="./adminUsers.php?skip='. $newskip .'">Previous Page</a>');
+                            }
+                        ?>
+                        </td><td></td>
+                        <td colspan="2">
+                        <?php
+                            if ($last_user < $total_users){
+                                $newskip = (intval($skip) + $limit);
+                                if ($newskip < 0){
+                                    $newskip = 0;
+                                }
+                                print_r('<a href="./adminUsers.php?skip='. $newskip .'">Next</a>');
+                            }
+                        ?>
+                        </td>
+                    </tfoot>
                     <tbody>
 
                         <?php
@@ -79,25 +103,6 @@ $last_user = $skip + count($users);
                         ?>
                     </tbody>
                 </table>
-                <?php
-                    print_r("<br/><br/>");
-
-                    if ($first_user > 1){
-                        $newskip = (intval($skip) - $limit);
-                        if ($newskip < 0){
-                            $newskip = 0;
-                        }
-                        print_r('<a href="./adminUsers.php?skip='. $newskip .'">Previous</a>');
-                    }
-
-                    if ($last_user < $total_users){
-                        $newskip = (intval($skip) + $limit);
-                        if ($newskip < 0){
-                            $newskip = 0;
-                        }
-                        print_r('<a href="./adminUsers.php?skip='. $newskip .'">Next</a>');
-                    }
-                ?>
             </div>
             
         </div>
