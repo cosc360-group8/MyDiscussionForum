@@ -45,8 +45,33 @@ $last_user = $skip + count($users);
                         <th>ID</th>
                         <th>Username</th>
                         <th>Email</th>
-                        <th colspan="3">Action</th>
+                        <th>Member Since</th>
+                        <th colspan="2">Action</th>
                     </thead>
+                    <tfoot>
+                        <td colspan="3">
+                        <?php
+                            if ($first_user > 1){
+                                $newskip = (intval($skip) - $limit);
+                                if ($newskip < 0){
+                                    $newskip = 0;
+                                }
+                                print_r('<a href="./adminUsers.php?skip='. $newskip .'">Previous Page</a>');
+                            }
+                        ?>
+                        </td>
+                        <td colspan="3">
+                        <?php
+                            if ($last_user < $total_users){
+                                $newskip = (intval($skip) + $limit);
+                                if ($newskip < 0){
+                                    $newskip = 0;
+                                }
+                                print_r('<a href="./adminUsers.php?skip='. $newskip .'">Next</a>');
+                            }
+                        ?>
+                        </td>
+                    </tfoot>
                     <tbody>
 
                         <?php
@@ -58,6 +83,8 @@ $last_user = $skip + count($users);
                                 $outstr .= $user->username;
                                 $outstr .= '</td><td>';
                                 $outstr .= $user->email;
+                                $outstr .= '</td><td>';
+                                $outstr .= date("Y-m-d h:i:sa", $user->created_on);
                                 $outstr .= '</td><td>';
                                 //$outstr .= '<a class="edit" href="">Edit</a></td><td><a class="delete" href="">Delete</a></td></tr>';
                                 if ($user->admin == 1){
@@ -79,25 +106,6 @@ $last_user = $skip + count($users);
                         ?>
                     </tbody>
                 </table>
-                <?php
-                    print_r("<br/><br/>");
-
-                    if ($first_user > 1){
-                        $newskip = (intval($skip) - $limit);
-                        if ($newskip < 0){
-                            $newskip = 0;
-                        }
-                        print_r('<a href="./adminUsers.php?skip='. $newskip .'">Previous</a>');
-                    }
-
-                    if ($last_user < $total_users){
-                        $newskip = (intval($skip) + $limit);
-                        if ($newskip < 0){
-                            $newskip = 0;
-                        }
-                        print_r('<a href="./adminUsers.php?skip='. $newskip .'">Next</a>');
-                    }
-                ?>
             </div>
             
         </div>

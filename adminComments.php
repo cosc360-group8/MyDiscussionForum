@@ -49,6 +49,30 @@ $last_comment = $skip + count($comments);
                     <th>Date Created</th>
                     <th>Action</th>
                 </thead>
+                <tfoot>
+                        <td colspan="2">
+                        <?php
+                            if ($first_comment > 1){
+                                $newskip = (intval($skip) - $limit);
+                                if ($newskip < 0){
+                                    $newskip = 0;
+                                }
+                                print_r('<a href="./adminComments.php?skip='. $newskip .'">Previous Page</a>');
+                            }
+                        ?>
+                        </td><td></td>
+                        <td colspan="2">
+                        <?php
+                            if ($last_comment < $total_comments){
+                                $newskip = (intval($skip) + $limit);
+                                if ($newskip < 0){
+                                    $newskip = 0;
+                                }
+                                print_r('<a href="./adminComments.php?skip='. $newskip .'">Next Page</a>');
+                            }
+                        ?>
+                        </td>
+                    </tfoot>
                 <tbody>
                     <?php
                         foreach($comments as $comment){
@@ -65,25 +89,6 @@ $last_comment = $skip + count($comments);
                     ?>
                 </tbody>
             </table>
-            <?php
-                    print_r("<br/><br/>");
-
-                    if ($first_comment > 1){
-                        $newskip = (intval($skip) - $limit);
-                        if ($newskip < 0){
-                            $newskip = 0;
-                        }
-                        print_r('<a href="./adminComments.php?skip='. $newskip .'">Previous</a>');
-                    }
-
-                    if ($last_comment < $total_comments){
-                        $newskip = (intval($skip) + $limit);
-                        if ($newskip < 0){
-                            $newskip = 0;
-                        }
-                        print_r('<a href="./adminComments.php?skip='. $newskip .'">Next</a>');
-                    }
-                ?>
         </div>
     </div>
 </main>

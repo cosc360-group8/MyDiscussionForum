@@ -1,6 +1,6 @@
 <?php include('header.php'); 
 
-$limit = 25;
+$limit = 1;
 
 include_once $_SERVER['DOCUMENT_ROOT']."/MyDiscussionForum/api/Post.php";
 include_once $_SERVER['DOCUMENT_ROOT']."/MyDiscussionForum/api/Comment.php";
@@ -84,14 +84,16 @@ $last_comment = $skip + count($comments);
                             print_r($outstr);
                         }
 
-                        print_r("<br/><br/>");
+                        print_r("<br/><center>");
 
                         if ($first_comment > 1){
                             $newskip = (intval($skip) - $limit);
                             if ($newskip < 0){
                                 $newskip = 0;
                             }
-                            print_r('<a href="./post.php?id='.$post->id.'&skip='. $newskip .'">Previous</a>');
+                            ?>
+                            <button onclick="redirect('./post.php?id=<?php print_r($post->id); ?>&skip=<?php print_r($newskip); ?>');">Previous Page</button>
+                            <?php
                         }
 
                         if ($last_comment < $total_comments){
@@ -99,8 +101,11 @@ $last_comment = $skip + count($comments);
                             if ($newskip < 0){
                                 $newskip = 0;
                             }
-                            print_r('<a href="./post.php?id='.$post->id.'&skip='. $newskip .'">Next</a>');
+                            ?>
+                            <button onclick="redirect('./post.php?id=<?php print_r($post->id); ?>&skip=<?php print_r($newskip); ?>');">Next Page</button>
+                            <?php
                         }
+                        print_r("</center>");
                     ?>
                 </div>
             </div>
