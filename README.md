@@ -67,6 +67,8 @@ Password: dS44pQ!G?p=ppC[^
 **passwordRecover.php** - Send an email to the user with a link to resetPassword.php
 **resetPassword.php** - User can update their old password
 
-
+## Admin
+**adminPosts.php** - Displays all the posts on the forum in a table format. Admin can delete any posts.
+**adminUsers.php** - Displays all the users information in a table format. An user can be enable/disable from logging in or enable/disable admin rights. 
 
 
