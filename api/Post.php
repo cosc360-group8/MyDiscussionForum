@@ -316,7 +316,7 @@ class Post {
         echo '<img src="'.$this->img_url.'" title="'.$this->title.'" />';
         echo '</figure>';
         echo '<div>';
-        echo '<span class="publisher">by '.$this->user->username.'</span>';
+        echo '<span class="publisher">by <a href="./profile.php?id='.$this->user->id.'">'.$this->user->username.'</a></span>';
         echo '<p class="post-text">';
         echo $this->content;
         echo '</p>';
