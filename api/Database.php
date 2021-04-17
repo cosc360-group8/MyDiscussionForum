@@ -7,10 +7,10 @@ class Database {
     // private $pass = '';
     // private $connection;     // to be used as a PDO object
 
-    private $host = 'c360.nrieske.com';
-    private $db = 'DiscForum';
-    private $user = 'phpmyadmin';
-    private $pass = 'dS44pQ!G?p=ppC[^';
+    private $host = '';
+    private $db = '';
+    private $user = '';
+    private $pass = '';
     private $connection; // to be used as a PDO object
 
     // function to connect to the database
