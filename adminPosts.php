@@ -46,8 +46,32 @@ $last_post = $skip + count($posts);
                         <th>ID</th>
                         <th>Title</th>
                         <th>Author</th>
-                        <th colspan="3">Action</th>
+                        <th>Action</th>
                     </thead>
+                    <tfoot>
+                        <td colspan="2">
+                        <?php
+                            if ($first_post > 1){
+                                $newskip = (intval($skip) - $limit);
+                                if ($newskip < 0){
+                                    $newskip = 0;
+                                }
+                                print_r('<a href="./adminPosts.php?skip='. $newskip .'">Previous Page</a>');
+                            }
+                        ?>
+                        </td>
+                        <td colspan="2">
+                        <?php
+                            if ($last_post < $total_posts){
+                                $newskip = (intval($skip) + $limit);
+                                if ($newskip < 0){
+                                    $newskip = 0;
+                                }
+                                print_r('<a href="./adminPosts.php?skip='. $newskip .'">Next</a>');
+                            }
+                        ?>
+                        </td>
+                    </tfoot>
                     <tbody>
                     <?php foreach ($posts as $post): ?>
                       <tr>
@@ -62,25 +86,6 @@ $last_post = $skip + count($posts);
                     
                     </tbody>
                 </table>
-                <?php
-                    print_r("<br/><br/>");
-
-                    if ($first_post > 1){
-                        $newskip = (intval($skip) - $limit);
-                        if ($newskip < 0){
-                            $newskip = 0;
-                        }
-                        print_r('<a href="./adminPosts.php?skip='. $newskip .'">Previous</a>');
-                    }
-
-                    if ($last_post < $total_posts){
-                        $newskip = (intval($skip) + $limit);
-                        if ($newskip < 0){
-                            $newskip = 0;
-                        }
-                        print_r('<a href="./adminPosts.php?skip='. $newskip .'">Next</a>');
-                    }
-                ?>
             </div>
 
         </div>

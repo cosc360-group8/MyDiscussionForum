@@ -51,14 +51,17 @@ $last_post = $skip + count($posts);
                     $post->board_html();
                 }
 
-                print_r("<br/><br/>");
+                print_r("<br/><center>");
 
                 if ($first_post > 1){
                     $newskip = intval($skip - $limit);
                     if ($newskip < 0){
                         $newskip = 0;
                     }
-                    print_r('<a href="./profile.php?id='.$id.'&skip='.$newskip.'">Previous</a>');
+
+                    ?>
+                    <button onclick="redirect('./profile.php?id=<?php print_r($id); ?>&skip=<?php print_r($newskip); ?>');">Previous Page</button>
+                    <?php
                 }
 
                 if ($last_post < $total_posts){
@@ -66,8 +69,13 @@ $last_post = $skip + count($posts);
                     if ($newskip < 0){
                         $newskip = 0;
                     }
-                    print_r('<a href="./profile.php?id='.$id.'&skip='.$newskip.'">Next</a>');
+                    
+                    ?>
+                    <button onclick="redirect('./profile.php?id=<?php print_r($id); ?>&skip=<?php print_r($newskip); ?>');">Next Page</button>
+                    <?php
                 }
+
+                print_r("</center>");
 
                 ?>
             </div>

@@ -55,6 +55,17 @@
 	color: rgb(238, 123, 123);
 }
 
+tfoot td a {
+	text-decoration: none;
+	font-weight: bold; 
+	color: rgb(152, 152, 231);
+	line-height: 50px;
+}
+
+tfoot td {
+	text-align: center;
+}
+
 /* .publish:hover {
 	color: rgb(138, 201, 138);
 } */
