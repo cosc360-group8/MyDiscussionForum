@@ -86,6 +86,46 @@ class Comment {
         return $comments;
     }
 
+    public function getcomments($db, $limit, $skip){
+        $q = 'SELECT *
+              FROM ForumComments
+              ORDER BY id DESC';
+
+        $pre_q = $db->prepare($q);
+        $pre_q->execute();
+
+        $this->lastrowcount = $pre_q->rowCount();
+
+        $comments = array();
+
+        $it_c = 0;
+        while($row = $pre_q->fetch(PDO::FETCH_ASSOC)){
+            $it_c++;
+            if ($it_c <= $skip){
+                continue;
+            } else if ($it_c > $limit + $skip){
+                break;
+            }
+
+            $c = new Comment();
+
+            $c->id = $row['id'];
+            $c->pid = $row['parentpost_id'];
+            $c->user = new User();
+            if(!$c->user->getuserbyid($db, $row['postedby_id'])){
+                $it_c--;
+                continue;
+            }
+            $c->dateposted = $row['dateposted'];
+            $c->content = $row['content'];
+            $c->score = $row['score'];
+
+            array_push($comments, $c);
+        }
+
+        return $comments;
+    }
+
     public function getusercomments($db, $uid, $limit, $skip){
         $q = 'SELECT *
               FROM ForumComments
