@@ -65,7 +65,9 @@ $last_comment = $skip + count($comments);
                         <textarea id="comment" name="comment" placeholder="Enter your comment" required></textarea>
                     </div>
                     <input type="hidden" name="pid" value="<?php print_r($post->id); ?>" />
-                    <input type="submit" />
+                    <div style="text-align: center;">
+                        <input class="buttons" type="submit" value="Submit">  
+                    </div> 
                 </form>
                 <?php
                 }

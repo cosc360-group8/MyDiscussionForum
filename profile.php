@@ -5,6 +5,8 @@ include('header.php');
 include_once $_SERVER['DOCUMENT_ROOT']."/MyDiscussionForum/api/Database.php";
 include_once $_SERVER['DOCUMENT_ROOT']."/MyDiscussionForum/api/Post.php";
 
+requireLogin($current_user, './auth/login.php');
+
 $db_obj = new Database();
 $db_con = $db_obj->connect();
 
@@ -18,11 +20,8 @@ if (isset($_GET['skip'])){
     }
 }
 
-$userId = 2; //test
-
 $temp_post = new Post();
-$posts = $temp_post->getuserposts($db_con,2, 25, $skip);
-
+$posts = $temp_post->getuserposts($db_con, $current_user->id, 25, $skip);
 
 ?>
 
@@ -37,9 +36,11 @@ $posts = $temp_post->getuserposts($db_con,2, 25, $skip);
                 ?>
             </div>
         <aside class="side-bar post-content" id="profile-wrapper">
-            <h1>Ed Chambers</h1>
-            <img class="avatar" src="images/avatar.jpg" alt="">
-            <p>Software developer and enthusiast of Virtual Reality technologies.</p>
+            <?php
+                echo "<h1>".$current_user->username."</h1>";
+                echo "<img class=\"avatar\" src=\"".$current_user->profile_img."\" alt=\"\">";
+                echo "<p>Software developer and enthusiast of Virtual Reality technologies.</p>";
+            ?>
         </aside>
     </main>
 
