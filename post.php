@@ -48,7 +48,7 @@ $last_comment = $skip + count($comments);
                 <figure class="post-pic">
                     <img src="<?php print_r($post->img_url); ?>" title="<?php print_r($post->title); ?>"  />
                 </figure>
-                <span class="publisher">by <?php print_r($post->user->username); ?></span>
+                <span class="publisher">by <a href="./profile.php?id=<?php print_r($post->user->id); ?>"><?php print_r($post->user->username); ?></a></span>
                 <p class="post-text">
                    <?php print_r($post->content); ?>
                 </p>
@@ -76,9 +76,9 @@ $last_comment = $skip + count($comments);
                     <?php
                         //print_r($comments);
                         foreach($comments as $c){
-                            $outstr = '<div class="single-items"><h4>';
+                            $outstr = '<div class="single-items"><h4><a href="./profile.php?id='.$c->user->id.'">';
                             $outstr .= $c->user->username;
-                            $outstr .= '</h4><p>';
+                            $outstr .= '</a></h4><p>';
                             $outstr .= $c->content;
                             $outstr .= '</p></div>';
                             print_r($outstr);

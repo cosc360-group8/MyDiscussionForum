@@ -45,7 +45,7 @@ if (!isset($_SESSION['loggedin'])){
 <body>
     <nav>
        <div class="logo">
-           <a href="index.php"><h4>MDF&reg;</h4></a>
+           <a href="../index.php"><h4>MDF&reg;</h4></a>
        </div>
        <ul class="nav-links">
            <li>
@@ -90,7 +90,7 @@ if (!isset($_SESSION['loggedin'])){
             }
            ?>
            <li>
-                <form method="GET" action="index.php">
+                <form method="GET" action="../index.php">
                 <input id="search-bar" name="search" type="text" placeholder="Find a post">
                 </form>
             </li>
