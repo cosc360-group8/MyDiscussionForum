@@ -91,12 +91,15 @@ if (!isset($_SESSION['loggedin'])){
             <li>
                 <a href="./auth/signup.php">Sign Up</a>
             </li>
-            <li>
-                <input id="search-bar" type="text" placeholder="Find a post">
-            </li>
+            
            <?php
             }
            ?>
+           <li>
+                <form method="GET" action="index.php">
+                <input id="search-bar" name="search" type="text" placeholder="Find a post">
+                </form>
+            </li>
        </ul>
        <div class="burger">
            <div class="line1"></div>

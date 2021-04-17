@@ -12,6 +12,8 @@ class User {
     public $admin;
     public $enabled;
 
+    public $lastrowcount;
+
     public function getusers($db, $limit, $skip){
         $q = 'SELECT *
               FROM ForumUsers
@@ -19,6 +21,8 @@ class User {
 
         $pre_q = $db->prepare($q);
         $pre_q->execute();
+
+        $this->lastrowcount = $pre_q->rowCount();
 
         $users = array();
 
@@ -62,6 +66,8 @@ class User {
         $pre_q->bindParam(1, $email);
         $pre_q->bindParam(2, $pw_hash);
         $pre_q->execute();
+
+        $this->lastrowcount = $pre_q->rowCount();
 
         // return false if no match  is found
         if ($pre_q->rowCount() < 1){
@@ -111,6 +117,8 @@ class User {
         $pre_q->bindParam(5, $pw_hash);
         $pre_q->execute();
 
+        $this->lastrowcount = $pre_q->rowCount();
+
         // return 0 if SQL query crashes
         if ($pre_q->rowCount() < 1){
             return 0;
@@ -133,6 +141,8 @@ class User {
         $pre_q = $db->prepare($q);
         $pre_q->bindParam(1, $username);
         $pre_q->execute();
+
+        $this->lastrowcount = $pre_q->rowCount();
 
         // if a match is not found, return false
         if ($pre_q->rowCount() < 1){
@@ -168,6 +178,8 @@ class User {
         $pre_q->bindParam(1, $email);
         $pre_q->execute();
 
+        $this->lastrowcount = $pre_q->rowCount();
+
         // return false if no entry is found
         if ($pre_q->rowCount() < 1){
             return false;
@@ -201,6 +213,8 @@ class User {
         $pre_q = $db->prepare($q);
         $pre_q->bindParam(1, $id);
         $pre_q->execute();
+
+        $this->lastrowcount = $pre_q->rowCount();
 
         // return false if no match if found
         if ($pre_q->rowCount() < 1){
@@ -245,6 +259,8 @@ class User {
         $pre_q->bindParam(2, $this->id);
         $pre_q->execute();
 
+        $this->lastrowcount = $pre_q->rowCount();
+
         if ($pre_q->rowCount() > 0){
             $this->enabled = $new_enabled;
             return true;
@@ -273,6 +289,8 @@ class User {
         }
         $pre_q->bindParam(2, $this->id);
         $pre_q->execute();
+
+        $this->lastrowcount = $pre_q->rowCount();
 
         if ($pre_q->rowCount() > 0){
             $this->admin = $new_admin;

@@ -2,6 +2,8 @@
 
 include('header.php'); 
 
+$limit = 1;
+
 requireAdmin($current_user, './auth/login.php');
 
 $db_obj = new Database();
@@ -18,7 +20,10 @@ if (isset($_GET['skip'])){
 }
 
 $temp_user = new User();
-$users = $temp_user->getusers($db_con, 25, $skip);
+$users = $temp_user->getusers($db_con, $limit, $skip);
+$total_users = $temp_user->lastrowcount;
+$first_user = $skip + 1;
+$last_user = $skip + count($users);
 
 ?>
 
@@ -73,9 +78,30 @@ $users = $temp_user->getusers($db_con, 25, $skip);
                                 print_r($outstr);
                             }
 
+                        
+
                         ?>
                     </tbody>
                 </table>
+                <?php
+                    print_r("<br/><br/>");
+
+                    if ($first_user > 1){
+                        $newskip = (intval($skip) - $limit);
+                        if ($newskip < 0){
+                            $newskip = 0;
+                        }
+                        print_r('<a href="./adminUsers.php?skip='. $newskip .'">Previous</a>');
+                    }
+
+                    if ($last_user < $total_users){
+                        $newskip = (intval($skip) + $limit);
+                        if ($newskip < 0){
+                            $newskip = 0;
+                        }
+                        print_r('<a href="./adminUsers.php?skip='. $newskip .'">Next</a>');
+                    }
+                ?>
             </div>
             
         </div>

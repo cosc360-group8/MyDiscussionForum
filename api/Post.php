@@ -14,6 +14,8 @@ class Post {
     public $board;
     public $score;
 
+    public $lastrowcount;
+
     // Gets the post with a specific ID
     // Returns true if there is a post with that ID
     // Returns false otherwise
@@ -31,6 +33,8 @@ class Post {
         $pre_q->bindParam(1, $id);
         // Then execute the SQL query
         $pre_q->execute();
+
+        $this->lastrowcount = $pre_q->rowCount();
 
         // checking if there is a match
         if ($pre_q->rowCount() < 1){
@@ -65,6 +69,8 @@ class Post {
 
         $pre_q = $db->prepare($q);
         $pre_q->execute();
+        
+        $this->lastrowcount = $pre_q->rowCount();
 
         $posts = array();
 
@@ -109,6 +115,8 @@ class Post {
         $pre_q = $db->prepare($q);
         $pre_q->bindParam(1, $uid);
         $pre_q->execute();
+        
+        $this->lastrowcount = $pre_q->rowCount();
 
         $posts = array();
 
@@ -153,6 +161,8 @@ class Post {
         $pre_q = $db->prepare($q);
         $pre_q->bindParam(1, $board);
         $pre_q->execute();
+        
+        $this->lastrowcount = $pre_q->rowCount();
 
         $posts = array();
 
@@ -194,6 +204,8 @@ class Post {
               ORDER BY id DESC';
 
         $posts = array();
+        
+        $this->lastrowcount = $pre_q->rowCount();
 
         $it_c = 0;
 
@@ -247,6 +259,8 @@ class Post {
         $pre_q->bindParam(4, $content);
         $pre_q->bindParam(5, $board);
         $pre_q->execute();
+        
+        $this->lastrowcount = $pre_q->rowCount();
 
         if ($pre_q->rowCount() < 1){
             return false;
@@ -277,6 +291,8 @@ class Post {
         $pre_q = $db->prepare($q);
         $pre_q->bindParam(1, $this->id);
         $pre_q->execute();
+        
+        $this->lastrowcount = $pre_q->rowCount();
 
         if ($pre_q->rowCount() < 1){
             return false;

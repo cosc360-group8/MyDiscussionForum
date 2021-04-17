@@ -5,8 +5,6 @@ include('header.php');
 include_once $_SERVER['DOCUMENT_ROOT']."/MyDiscussionForum/api/Database.php";
 include_once $_SERVER['DOCUMENT_ROOT']."/MyDiscussionForum/api/Post.php";
 
-requireLogin($current_user, './auth/login.php');
-
 $db_obj = new Database();
 $db_con = $db_obj->connect();
 
@@ -20,10 +18,11 @@ if (isset($_GET['skip'])){
     }
 }
 
-// $userId = 2; //test
+$userId = 2; //test
 
 $temp_post = new Post();
-$posts = $temp_post->getuserposts($db_con, $current_user->id, 25, $skip);
+$posts = $temp_post->getuserposts($db_con,2, 25, $skip);
+
 
 ?>
 
