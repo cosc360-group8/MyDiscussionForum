@@ -46,6 +46,47 @@ function timesince($datetime){
     return $retstr;
 }
 
+function timesince_short($datetime){
+    $now = strtotime("now");
+    $then = strtotime($datetime);
+    // Number of seconds since the post
+    $delta = $now - $then;
+    $retstr = '';
+
+    $min = getminutes($delta);
+    $hr = gethours($delta);
+    $dys = getdays($delta);
+    $yrs = getyears($delta);
+
+    if ($min == 0){
+        $retstr = $delta.' second';
+        if ($delta != 1){
+            $retstr = $retstr.'s';
+        }
+    } else if ($hr == 0){
+        $retstr = $min.' minute';
+        if ($min != 1){
+            $retstr = $retstr.'s';
+        }
+    } else if ($dys == 0){
+        $retstr = $hr.' hour';
+        if ($hr != 1){
+            $retstr = $retstr.'s';
+        }
+    } else if ($yrs == 0){
+        $retstr = $dys.' day';
+        if ($dys != 1){
+            $retstr = $retstr.'s';
+        }
+    } else {
+        $retstr = $yrs.' year';
+        if ($yrs != 1){
+            $retstr = $retstr.'s';
+        }
+    }
+    return $retstr;
+}
+
 function requireAdmin($user, $redirect){
     requireLogin($user, $redirect);
     if (isset($user) && $user->admin == 1){
@@ -82,12 +123,10 @@ function uploadImage($dir, $file, $uid){
     $ext = strtolower(pathinfo($fbn, PATHINFO_EXTENSION));
 
     if ($ext != 'jpg' && $ext != 'png' && $ext != 'jpeg'){
-        die("extension");
         return false;
     }
 
     if (getimagesize($file['tmp_name']) === false || $file['size'] > 1048576){
-        die("file size or not an image");
         return false;
     }
 

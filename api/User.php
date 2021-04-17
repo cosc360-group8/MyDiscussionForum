@@ -14,6 +14,23 @@ class User {
 
     public $lastrowcount;
 
+    public function update($db, $uid, $fname, $lname, $pfp){
+        $q = 'UPDATE ForumUsers
+              SET firstname = ?, lastname = ?, profile_img = ?
+              WHERE id = ?';
+
+        $pre_q = $db->prepare($q);
+        $pre_q->bindParam(1, $fname);
+        $pre_q->bindParam(2, $lname);
+        $pre_q->bindParam(3, $pfp);
+        $pre_q->bindParam(4, $uid);
+        $pre_q->execute();
+
+        $this->lastrowcount = $pre_q->rowCount();
+
+        return $pre_q->rowCount() > 0;
+    }
+
     public function getusers($db, $limit, $skip){
         $q = 'SELECT *
               FROM ForumUsers

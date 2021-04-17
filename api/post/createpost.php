@@ -39,14 +39,14 @@ $board = $_POST['post_board'];
 $title = $_POST['post_title'];
 $content = $_POST['post_content'];
 
-$uploadDirectory = "../../images/";
+$uploadDirectory = "../../images/post/";
 
 $response = uploadImage($uploadDirectory, $_FILES["coverImage"], $current_user->id);
 if ($response === false){
 	header("Location: ../../createPost.php");
 }
 
-$path = './images/uploads/'.$response;
+$path = './images/post/'.$response;
 
 $db_obj = new Database();
 $db_con = $db_obj->connect();
