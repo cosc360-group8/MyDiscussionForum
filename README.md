@@ -5,19 +5,6 @@ The objective is to create a discussion forum similar to Reddit. Registered user
 
 To start exploring the forum, you can navigate to index.php.
  
-**Admin account:**
-Username: hello@world.com
-Password: 12345678
-
-**Standard account:**
-Username: jsmith@gmail.com 
-Password: jsmith123
-
-**phpMyAdmin:**
-https://c360.nrieske.com/phpmyadmin/
-Username: phpmyadmin
-Password: dS44pQ!G?p=ppC[^
-
 ## Database
 **DiscForum.sql** - contains database structures for posts, users, and comments. If this is to be imported into another database, ensure that the database name is DiscForum.
 
