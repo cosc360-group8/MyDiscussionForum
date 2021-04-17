@@ -1,5 +1,7 @@
 <?php include('header.php'); 
 
+$limit = 25;
+
 include_once $_SERVER['DOCUMENT_ROOT']."/MyDiscussionForum/api/Post.php";
 include_once $_SERVER['DOCUMENT_ROOT']."/MyDiscussionForum/api/Comment.php";
 
@@ -29,7 +31,10 @@ if (isset($_GET['skip'])){
 }
 
 $temp_comment = new Comment();
-$comments = $temp_comment->getpostcomments($db_con, $post->id, 25, $skip);
+$comments = $temp_comment->getpostcomments($db_con, $post->id, $limit, $skip);
+$total_comments = $temp_comment->lastrowcount;
+$first_comment = $skip + 1;
+$last_comment = $skip + count($comments);
 
 ?>
     <main class="flex-container">
@@ -77,6 +82,24 @@ $comments = $temp_comment->getpostcomments($db_con, $post->id, 25, $skip);
                             $outstr .= $c->content;
                             $outstr .= '</p></div>';
                             print_r($outstr);
+                        }
+
+                        print_r("<br/><br/>");
+
+                        if ($first_comment > 1){
+                            $newskip = (intval($skip) - $limit);
+                            if ($newskip < 0){
+                                $newskip = 0;
+                            }
+                            print_r('<a href="./post.php?id='.$post->id.'&skip='. $newskip .'">Previous</a>');
+                        }
+
+                        if ($last_comment < $total_comments){
+                            $newskip = (intval($skip) + $limit);
+                            if ($newskip < 0){
+                                $newskip = 0;
+                            }
+                            print_r('<a href="./post.php?id='.$post->id.'&skip='. $newskip .'">Next</a>');
                         }
                     ?>
                 </div>

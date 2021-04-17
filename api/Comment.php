@@ -10,6 +10,8 @@ class Comment {
     public $content;
     public $score;
 
+    public $lastrowcount;
+
     public function getcommentbyid($db, $id){
         $q = 'SELECT *
               FROM ForumComments
@@ -19,6 +21,8 @@ class Comment {
         $pre_q = $db->prepare($q);
         $pre_q->bindParam(1, $id);
         $pre_q->execute();
+
+        $this->lastrowcount = $pre_q->rowCount();
 
         if ($pre_q->rowCount() < 1){
             return false;
@@ -49,6 +53,8 @@ class Comment {
         $pre_q = $db->prepare($q);
         $pre_q->bindParam(1, $pid);
         $pre_q->execute();
+
+        $this->lastrowcount = $pre_q->rowCount();
 
         $comments = array();
 
@@ -90,6 +96,8 @@ class Comment {
         $pre_q->bindParam(1, $uid);
         $pre_q->execute();
 
+        $this->lastrowcount = $pre_q->rowCount();
+
         $comments = array();
 
         $it_c = 0;
@@ -130,6 +138,8 @@ class Comment {
         $pre_q->bindParam(3, $content);
         $pre_q->execute();
 
+        $this->lastrowcount = $pre_q->rowCount();
+
         if($pre_q->rowCount() < 1){
             return false;
         }
@@ -157,6 +167,8 @@ class Comment {
         $pre_q = $db->prepare($q);
         $pre_q->bindParam(1, $this->id);
         $pre_q->execute();
+
+        $this->lastrowcount = $pre_q->rowCount();
 
         if ($pre_q->rowCount() < 1){
             return false;
