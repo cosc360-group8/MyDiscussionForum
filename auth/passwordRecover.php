@@ -16,7 +16,7 @@
 
     // verifying if user with username and email is present in the database
     if($user->getuserbyusername($db_con, $username) && $user->getuserbyemail($db_con, $email)){
-        echo "user exists";
+        echo "user exists <br>";
         $to = "mydiscussionforum.MDF@gmail.com";
         $subject = "Password Recovery - MyDiscussionForum --noreply";
         $from = "mydiscussionforum.MDF@gmail.com";
@@ -24,12 +24,24 @@
         $headers  = 'MIME-Version: 1.0' . "\r\n";
         $headers .= 'Content-type: text/html; charset=iso-8859-1' . "\r\n";
         $headers .= 'From: '.'<'.$from.'>' . "\r\n"; 
-        $message = "<a href=\"\">Reset your password here</a>";
 
-        // mail($to, $subject, $message, $headers);
+        $code = uniqid(true);   // genereates a unique id to be stored in the resetPasswords table
+        $flag = $user->createResetPasswords($db_con, $username, $email, $code);
+        $message = "<h3>here is the code $code</h3>";
+
+        if($flag == 1){
+            $link = "http://".$_SERVER['HTTP_HOST'].dirname($_SERVER['PHP_SELF'])."/resetPassword.php?code=$code";
+            echo "here is the <a href=\"$link\">link</a>";
+            //mail($to, $subject, $message, $headers);
+        }
+        else{
+            echo "an error occured";
+        }
 
 
-        // mail('mydiscussionforum.MDF@gmail.com', 'test subject', 'hello', 'From: mydiscussionforum.MDF@gmail.com');
+        
+
+
 
     }
     else{

@@ -147,6 +147,29 @@ class User {
         return 1;
     }
 
+    // function to create an entry in resetPasswords table 
+    public function createResetPasswords($db, $username, $email, $code){
+        $q = 'INSERT INTO resetPasswords (username, email, code)
+        VALUES (:username, :email, :code)';
+
+         // prepared statement
+         $pre_q = $db->prepare($q);
+         $pre_q->bindValue(':username', $username);
+         $pre_q->bindValue(':email', $email);
+         $pre_q->bindValue(':code', $code);
+         $pre_q->execute();
+
+          // return 0 if SQL query crashes
+        if ($pre_q->rowCount() < 1){
+            return 0;
+        }
+
+        // return 1 if entry created
+        return 1;
+
+    }
+
+
     public function getuserbyusername($db, $username){
         // function returns true if a username is found in the database, else returns false
         $q = 'SELECT *
@@ -315,6 +338,62 @@ class User {
         }
 
         return false;
+    }
+
+    // function to retrieve info from resetPasswords table
+    public function getInfoByCode($db, $code){
+        $q = 'SELECT username, email
+              FROM resetPasswords
+              WHERE code = :code';
+
+        // prepared statement
+        $pre_q = $db->prepare($q);
+        $pre_q->bindValue(:code, $code);
+        $pre_q->execute();
+
+        $this->lastrowcount = $pre_q->rowCount();
+
+        // return false if no match if found
+        if ($pre_q->rowCount() < 1){
+            return false;
+        }
+
+        // a match if found
+        $row = $pre_q->fetch(PDO::FETCH_ASSOC);
+
+        $this->username = $row['username'];
+        $this->email = $row['email'];
+       
+        // return true if a match if found
+        return true;
+    }
+
+    public function updatePassword($db, $username, $email, $password){
+        $q = 'UPDATE ForumUsers
+              SET password_hash = :pw
+              WHERE username = :username
+              AND email = :email';
+
+        $pre_q = $db->prepare($q);
+        $pre_q->bindValue(':pw', $password);
+        $pre_q->bindValue(':username', $username);
+        $pre_q->bindValue(':email', $email);
+        $pre_q->execute();
+
+        $this->lastrowcount = $pre_q->rowCount();
+
+        return $pre_q->rowCount() > 0;
+    }
+
+    public function deleteFromResetPasswords($db, $code){
+        $q = 'DELETE FROM resetPasswords
+              WHERE code = :code';
+
+        $pre_q = $db->prepare($q);
+        $pre_q->bindValue(':code', $code);
+        $pre_q->execute();
+
+        
     }
 
     // function to return user details
